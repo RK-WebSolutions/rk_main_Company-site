@@ -252,6 +252,31 @@ button {
   transition: opacity 0.3s ease;
 }
 
+.nm-hero-bottom-laptop {
+  width: min(48%, 886px);
+}
+
+.nm-hero-bottom-laptop > img {
+  width: 100%;
+}
+
+.nm-hero-bottom-laptop-slider {
+  width: min(72%, calc(100% - 118px));
+  bottom: 16.4%;
+  overflow: hidden;
+}
+
+.nm-hero-bottom-laptop-slider-img,
+.nm-hero-bottom-laptop-slider-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.nm-hero-bottom-laptop-slider-img img {
+  object-fit: cover;
+  object-position: top center;
+}
+
 .rk-section-intro {
   margin-top: 72px;
   margin-bottom: 32px;
@@ -1256,6 +1281,15 @@ button {
 
   .rk-section-intro--tight {
     margin-bottom: 22px;
+  }
+
+  .nm-hero-bottom-laptop {
+    width: min(62%, 860px);
+  }
+
+  .nm-hero-bottom-laptop-slider {
+    width: min(71.2%, calc(100% - 112px));
+    bottom: 16.6%;
   }
 }
 
