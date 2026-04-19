@@ -1,0 +1,155 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0;font-family:var(--font-sans)}
+.pricing-header{text-align:center;margin-bottom:28px}
+.pricing-header h2{font-size:22px;font-weight:500;margin-bottom:8px;color:var(--color-text-primary)}
+.pricing-header p{font-size:14px;color:var(--color-text-secondary);line-height:1.6}
+.toggle-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px}
+.toggle-label{font-size:13px;color:var(--color-text-secondary)}
+.toggle-label.active{color:var(--color-text-primary);font-weight:500}
+.toggle-track{position:relative;width:40px;height:22px;background:var(--color-border-secondary);border-radius:11px;cursor:pointer;border:0.5px solid var(--color-border-secondary)}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--color-background-primary);transition:transform 0.2s;pointer-events:none}
+.toggle-track.on{background:#185FA5}
+.toggle-track.on .toggle-thumb{transform:translateX(18px)}
+.save-badge{font-size:11px;padding:2px 8px;border-radius:20px;background:#E1F5EE;color:#085041;font-weight:500}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-bottom:24px}
+.plan{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:20px 18px;position:relative}
+.plan.featured{border:2px solid #185FA5}
+.plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:500;padding:3px 12px;border-radius:20px;background:#185FA5;color:#fff;white-space:nowrap}
+.plan-name{font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px}
+.plan-price{font-size:26px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.plan-price span{font-size:13px;font-weight:400;color:var(--color-text-secondary)}
+.plan-desc{font-size:12px;color:var(--color-text-secondary);margin-bottom:16px;line-height:1.5;padding-bottom:14px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.plan-features{list-style:none;margin-bottom:18px}
+.plan-features li{font-size:12px;color:var(--color-text-primary);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.check{width:14px;height:14px;min-width:14px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.check svg{width:8px;height:8px}
+.plan-btn{display:block;width:100%;padding:10px;font-size:13px;font-weight:500;border-radius:var(--border-radius-md);cursor:pointer;text-align:center;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-primary)}
+.plan-btn.primary{background:#185FA5;color:#fff;border:none}
+.add-ons{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:18px 20px;margin-bottom:20px}
+.add-ons h3{font-size:14px;font-weight:500;margin-bottom:14px}
+.add-on-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.add-on{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px}
+.add-on-name{font-size:12px;font-weight:500;margin-bottom:2px}
+.add-on-price{font-size:13px;font-weight:500;color:#185FA5}
+.add-on-desc{font-size:11px;color:var(--color-text-secondary)}
+.faq{margin-bottom:8px}
+.faq h3{font-size:14px;font-weight:500;margin-bottom:14px}
+.faq-item{padding:12px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.faq-q{font-size:13px;font-weight:500;margin-bottom:4px}
+.faq-a{font-size:12px;color:var(--color-text-secondary);line-height:1.6}
+.guarantee{display:flex;align-items:flex-start;gap:12px;padding:16px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:20px;background:var(--color-background-primary)}
+.g-icon{width:36px;height:36px;min-width:36px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center}
+.g-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.g-text{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+</style>
+<div class="wrap">
+
+<div class="pricing-header">
+  <h2>Simple, honest pricing</h2>
+  <p>No hidden costs, no surprise invoices. Fixed price agreed before work starts.</p>
+</div>
+
+<div class="toggle-row">
+  <span class="toggle-label active" id="lbl-inr">₹ INR</span>
+  <div class="toggle-track" id="currency-toggle" onclick="toggleCurrency()"><div class="toggle-thumb"></div></div>
+  <span class="toggle-label" id="lbl-usd">$ USD</span>
+  <span class="save-badge">Global clients</span>
+</div>
+
+<div class="plans">
+  <div class="plan">
+    <div class="plan-name">Starter</div>
+    <div class="plan-price" id="p1">₹15,000 <span>onwards</span></div>
+    <div class="plan-desc">Perfect for small businesses, freelancers, and local shops who need a clean online presence fast.</div>
+    <ul class="plan-features">
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Up to 5 pages</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Mobile responsive design</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Contact form + WhatsApp</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Basic SEO setup</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Delivered in 7–10 days</li>
+    </ul>
+    <button class="plan-btn" onclick="sendPrompt('Tell me more about the Starter web design package')">Get started ↗</button>
+  </div>
+
+  <div class="plan featured">
+    <div class="plan-badge">Most popular</div>
+    <div class="plan-name">Business</div>
+    <div class="plan-price" id="p2">₹35,000 <span>onwards</span></div>
+    <div class="plan-desc">For growing businesses that need a professional site that brings in leads and ranks on Google.</div>
+    <ul class="plan-features">
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Up to 10 pages</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Custom WordPress theme</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Full on-page SEO</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Google Analytics setup</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Speed optimisation</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>30 days post-launch support</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Delivered in 14–21 days</li>
+    </ul>
+    <button class="plan-btn primary" onclick="sendPrompt('I want to know more about the Business web design package')">Get started ↗</button>
+  </div>
+
+  <div class="plan">
+    <div class="plan-name">E-commerce</div>
+    <div class="plan-price" id="p3">₹60,000 <span>onwards</span></div>
+    <div class="plan-desc">Full online store with payments, inventory, and everything needed to start selling online.</div>
+    <ul class="plan-features">
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>WooCommerce or Shopify</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Up to 50 products setup</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Payment gateway integration</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Order & inventory management</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>Mobile checkout optimised</li>
+      <li><div class="check"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></svg></div>60 days post-launch support</li>
+    </ul>
+    <button class="plan-btn" onclick="sendPrompt('Tell me more about the E-commerce web development package')">Get started ↗</button>
+  </div>
+</div>
+
+<div class="guarantee">
+  <div class="g-icon">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 7H16L12 10.5L13.5 16L9 13L4.5 16L6 10.5L2 7H7L9 2Z" stroke="#0F6E56" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+  </div>
+  <div>
+    <div class="g-title">My quality guarantee</div>
+    <div class="g-text">If you're not happy with the design after the first revision, I'll rework it until you are — at no extra cost. I don't consider a project done until you're satisfied.</div>
+  </div>
+</div>
+
+<div class="add-ons">
+  <h3>Add-on services</h3>
+  <div class="add-on-grid">
+    <div class="add-on"><div class="add-on-name">Logo design</div><div class="add-on-price" id="a1">₹3,000+</div><div class="add-on-desc">Custom brand identity</div></div>
+    <div class="add-on"><div class="add-on-name">Monthly SEO</div><div class="add-on-price" id="a2">₹8,000/mo</div><div class="add-on-desc">Ongoing ranking growth</div></div>
+    <div class="add-on"><div class="add-on-name">Website maintenance</div><div class="add-on-price" id="a3">₹3,500/mo</div><div class="add-on-desc">Updates, backups, security</div></div>
+    <div class="add-on"><div class="add-on-name">Speed optimisation</div><div class="add-on-price" id="a4">₹5,000</div><div class="add-on-desc">Score 90+ on PageSpeed</div></div>
+  </div>
+</div>
+
+<div class="faq">
+  <h3>Frequently asked questions</h3>
+  <div class="faq-item"><div class="faq-q">How do I pay?</div><div class="faq-a">50% upfront to start, 50% on delivery. UPI, bank transfer, or PayPal for international clients.</div></div>
+  <div class="faq-item"><div class="faq-q">Do you work with clients outside India?</div><div class="faq-a">Yes — I work with clients worldwide. Communication is over WhatsApp, email, or video call. Payments via PayPal or Wise.</div></div>
+  <div class="faq-item"><div class="faq-q">Will I be able to edit my website after launch?</div><div class="faq-a">Absolutely. All WordPress sites come with a simple dashboard you can manage yourself. I also provide a short training walkthrough.</div></div>
+  <div class="faq-item"><div class="faq-q">What if I need changes after launch?</div><div class="faq-a">All packages include a post-launch support period. After that, you can choose a monthly maintenance plan or hire me per task.</div></div>
+</div>
+
+</div>
+<script>
+var isUSD = false;
+var inr = ['₹15,000 <span>onwards</span>','₹35,000 <span>onwards</span>','₹60,000 <span>onwards</span>'];
+var usd = ['$200 <span>onwards</span>','$450 <span>onwards</span>','$800 <span>onwards</span>'];
+var ainr = ['₹3,000+','₹8,000/mo','₹3,500/mo','₹5,000'];
+var ausd = ['$40+','$100/mo','$45/mo','$65'];
+function toggleCurrency(){
+  isUSD=!isUSD;
+  var t=document.getElementById('currency-toggle');
+  t.classList.toggle('on',isUSD);
+  document.getElementById('lbl-inr').classList.toggle('active',!isUSD);
+  document.getElementById('lbl-usd').classList.toggle('active',isUSD);
+  var prices=isUSD?usd:inr;
+  ['p1','p2','p3'].forEach(function(id,i){document.getElementById(id).innerHTML=prices[i]});
+  var ap=isUSD?ausd:ainr;
+  ['a1','a2','a3','a4'].forEach(function(id,i){document.getElementById(id).textContent=ap[i]});
+}
+</script>

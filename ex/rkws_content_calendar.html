@@ -1,0 +1,284 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0;font-family:var(--font-sans)}
+.cal-head{margin-bottom:20px}
+.cal-head h2{font-size:17px;font-weight:500;margin-bottom:4px}
+.cal-head p{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+.month-block{margin-bottom:20px}
+.month-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-tertiary);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.post-row{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px;cursor:pointer;transition:border-color 0.15s}
+.post-row:hover{border-color:var(--color-border-primary)}
+.post-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.post-num{width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;margin-top:1px}
+.post-title{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.4;flex:1}
+.post-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;padding-left:34px}
+.meta-tag{font-size:10px;padding:2px 8px;border-radius:20px}
+.keyword-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;margin-left:34px;margin-bottom:8px}
+.kw-label{font-size:10px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:4px}
+.kw-list{display:flex;flex-wrap:wrap;gap:4px}
+.kw{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.outline-box{margin-left:34px}
+.outline-label{font-size:10px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:6px}
+.outline-steps{display:flex;flex-direction:column;gap:3px}
+.outline-step{font-size:11px;color:var(--color-text-secondary);line-height:1.5;display:flex;gap:6px}
+.step-n{color:var(--color-text-tertiary);min-width:14px}
+.cta-row{display:flex;gap:8px;flex-wrap:wrap;margin-left:34px;margin-top:10px}
+.cta-tag{font-size:11px;padding:3px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);cursor:pointer}
+.tips-box{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:16px 18px}
+.tips-title{font-size:13px;font-weight:500;margin-bottom:12px}
+.tip-row{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:var(--color-text-secondary);line-height:1.5}
+.tip-dot{width:6px;height:6px;min-width:6px;border-radius:50%;background:#185FA5;margin-top:6px}
+</style>
+<div class="wrap">
+
+<div class="cal-head">
+  <h2>6-month blog content calendar</h2>
+  <p>One post per month — quality over quantity. Each post is designed to rank on Google and bring you client enquiries.</p>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 1 — May 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: Do I really need a website if I already have Instagram and JustDial? Target audience: Indian small business owners')">
+    <div class="post-top">
+      <div class="post-num" style="background:#E6F1FB;color:#0C447C">1</div>
+      <div class="post-title">"Do I really need a website if I already have Instagram and JustDial?"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#E6F1FB;color:#0C447C">Small business</span>
+      <span class="meta-tag" style="background:#E1F5EE;color:#085041">High traffic potential</span>
+      <span class="meta-tag" style="background:#FAEEDA;color:#633806">India-specific</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">do I need a website in India</span>
+        <span class="kw">website vs Instagram business</span>
+        <span class="kw">JustDial vs website</span>
+        <span class="kw">why small business needs website</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (7 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>Hook — the painful truth about depending on rented platforms</div>
+        <div class="outline-step"><span class="step-n">2.</span>What Instagram can do — and what it can't</div>
+        <div class="outline-step"><span class="step-n">3.</span>Why JustDial listings are a dead end for long-term growth</div>
+        <div class="outline-step"><span class="step-n">4.</span>The 3 things only your own website can do</div>
+        <div class="outline-step"><span class="step-n">5.</span>Real example — local business before vs after website</div>
+        <div class="outline-step"><span class="step-n">6.</span>But what if I can't afford a website?</div>
+        <div class="outline-step"><span class="step-n">7.</span>Conclusion + CTA: get a free quote</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: Do I really need a website if I already have Instagram and JustDial?')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a LinkedIn post promoting this blog article: Do I really need a website if I have Instagram and JustDial?')">LinkedIn caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 2 — June 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: How much does a website cost in India in 2025? Be specific with INR pricing for different types.')">
+    <div class="post-top">
+      <div class="post-num" style="background:#FAEEDA;color:#633806">2</div>
+      <div class="post-title">"How much does a website cost in India in 2025? The honest breakdown"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#E6F1FB;color:#0C447C">Small business</span>
+      <span class="meta-tag" style="background:#E1F5EE;color:#085041">Very high search volume</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">website cost India 2025</span>
+        <span class="kw">how much to build a website India</span>
+        <span class="kw">website development charges India</span>
+        <span class="kw">website price Coimbatore</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (6 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>Why pricing is so confusing — and why that's unfair to you</div>
+        <div class="outline-step"><span class="step-n">2.</span>The 4 types of websites and their real costs (₹5k to ₹5L)</div>
+        <div class="outline-step"><span class="step-n">3.</span>What drives the price up — and what's not worth paying for</div>
+        <div class="outline-step"><span class="step-n">4.</span>Freelancer vs agency vs DIY — pros, cons, real costs</div>
+        <div class="outline-step"><span class="step-n">5.</span>Red flags when hiring a web developer in India</div>
+        <div class="outline-step"><span class="step-n">6.</span>What you should expect for your budget + CTA</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: How much does a website cost in India in 2025?')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a WhatsApp status caption promoting my blog post about website costs in India')">WhatsApp caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 3 — July 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: Why your website is not showing on Google — 6 common reasons and exact fixes for Indian small businesses')">
+    <div class="post-top">
+      <div class="post-num" style="background:#E1F5EE;color:#085041">3</div>
+      <div class="post-title">"Why your website is not showing on Google (and how to fix it)"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#E1F5EE;color:#085041">SEO & Google</span>
+      <span class="meta-tag" style="background:#FCEBEB;color:#791F1F">Problem-aware readers</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">website not showing on Google India</span>
+        <span class="kw">why is my website not ranking</span>
+        <span class="kw">website not appearing in Google search</span>
+        <span class="kw">how to rank website on Google India</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (8 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>The frustration every business owner feels</div>
+        <div class="outline-step"><span class="step-n">2.</span>Reason 1 — your site is too new (Google needs time)</div>
+        <div class="outline-step"><span class="step-n">3.</span>Reason 2 — wrong keywords on your pages</div>
+        <div class="outline-step"><span class="step-n">4.</span>Reason 3 — slow loading speed kills rankings</div>
+        <div class="outline-step"><span class="step-n">5.</span>Reason 4 — no Google Business Profile</div>
+        <div class="outline-step"><span class="step-n">6.</span>Reason 5 — not mobile friendly</div>
+        <div class="outline-step"><span class="step-n">7.</span>Reason 6 — no other sites linking to you</div>
+        <div class="outline-step"><span class="step-n">8.</span>Quick wins checklist + CTA for SEO audit</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: Why your website is not showing on Google and how to fix it')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a LinkedIn post about why small business websites dont rank on Google in India')">LinkedIn caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 4 — August 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: WordPress vs Wix vs Squarespace — which platform is best for Indian small businesses in 2025?')">
+    <div class="post-top">
+      <div class="post-num" style="background:#EEEDFE;color:#3C3489">4</div>
+      <div class="post-title">"WordPress vs Wix vs Squarespace — which is right for your business?"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#EEEDFE;color:#3C3489">Web design</span>
+      <span class="meta-tag" style="background:#E1F5EE;color:#085041">Evergreen traffic</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">WordPress vs Wix India</span>
+        <span class="kw">best website builder India 2025</span>
+        <span class="kw">WordPress vs Squarespace small business</span>
+        <span class="kw">which platform for business website India</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (6 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>Why this decision matters more than you think</div>
+        <div class="outline-step"><span class="step-n">2.</span>Wix — who it's for and who should avoid it</div>
+        <div class="outline-step"><span class="step-n">3.</span>Squarespace — beautiful but limited</div>
+        <div class="outline-step"><span class="step-n">4.</span>WordPress — why it powers 43% of the internet</div>
+        <div class="outline-step"><span class="step-n">5.</span>Head-to-head comparison table (SEO, price, ease, India support)</div>
+        <div class="outline-step"><span class="step-n">6.</span>My recommendation based on your business type + CTA</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: WordPress vs Wix vs Squarespace for Indian small businesses')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a LinkedIn carousel post comparing WordPress vs Wix vs Squarespace')">LinkedIn caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 5 — September 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: How to get your Coimbatore business found on Google in 2025 — local SEO guide for Tamil Nadu small businesses')">
+    <div class="post-top">
+      <div class="post-num" style="background:#FAECE7;color:#712B13">5</div>
+      <div class="post-title">"How to get your Coimbatore business found on Google — local SEO guide"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#FAECE7;color:#712B13">Coimbatore & TN</span>
+      <span class="meta-tag" style="background:#E1F5EE;color:#085041">Zero competition</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">local SEO Coimbatore</span>
+        <span class="kw">Google My Business Coimbatore</span>
+        <span class="kw">how to rank business Coimbatore</span>
+        <span class="kw">digital marketing Coimbatore small business</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (7 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>Why local search is the biggest opportunity for CBE businesses</div>
+        <div class="outline-step"><span class="step-n">2.</span>Step 1 — Set up and optimise Google Business Profile</div>
+        <div class="outline-step"><span class="step-n">3.</span>Step 2 — Get your NAP consistent everywhere online</div>
+        <div class="outline-step"><span class="step-n">4.</span>Step 3 — Collect and respond to Google reviews</div>
+        <div class="outline-step"><span class="step-n">5.</span>Step 4 — Local keywords on your website pages</div>
+        <div class="outline-step"><span class="step-n">6.</span>Step 5 — Get listed on Tamil Nadu business directories</div>
+        <div class="outline-step"><span class="step-n">7.</span>Realistic timeline + free audit CTA</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: Local SEO guide for Coimbatore and Tamil Nadu small businesses')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a Facebook post for Coimbatore business owners about local SEO and Google visibility')">FB/WhatsApp caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="month-block">
+  <div class="month-label">Month 6 — October 2025</div>
+  <div class="post-row" onclick="sendPrompt('Write the complete blog post: 5 signs your business website needs a redesign in 2025 — for Indian small business owners')">
+    <div class="post-top">
+      <div class="post-num" style="background:#F1EFE8;color:#444441">6</div>
+      <div class="post-title">"5 signs your business website urgently needs a redesign in 2025"</div>
+    </div>
+    <div class="post-meta">
+      <span class="meta-tag" style="background:#EEEDFE;color:#3C3489">Web design</span>
+      <span class="meta-tag" style="background:#FAEEDA;color:#633806">Creates demand</span>
+    </div>
+    <div class="keyword-box">
+      <div class="kw-label">Target keywords</div>
+      <div class="kw-list">
+        <span class="kw">website redesign India 2025</span>
+        <span class="kw">old website hurting business</span>
+        <span class="kw">signs you need new website</span>
+        <span class="kw">website redesign cost India</span>
+      </div>
+    </div>
+    <div class="outline-box">
+      <div class="outline-label">Post outline (7 sections)</div>
+      <div class="outline-steps">
+        <div class="outline-step"><span class="step-n">1.</span>Your website is either your best salesperson or your worst first impression</div>
+        <div class="outline-step"><span class="step-n">2.</span>Sign 1 — it doesn't work properly on mobile</div>
+        <div class="outline-step"><span class="step-n">3.</span>Sign 2 — it takes more than 3 seconds to load</div>
+        <div class="outline-step"><span class="step-n">4.</span>Sign 3 — it hasn't been updated in 2+ years</div>
+        <div class="outline-step"><span class="step-n">5.</span>Sign 4 — you're embarrassed to share the URL</div>
+        <div class="outline-step"><span class="step-n">6.</span>Sign 5 — it generates zero enquiries</div>
+        <div class="outline-step"><span class="step-n">7.</span>What a redesign costs vs what a bad website costs you + CTA</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <span class="cta-tag" onclick="sendPrompt('Write the complete blog post: 5 signs your business website needs a redesign in 2025')">Write full post ↗</span>
+      <span class="cta-tag" onclick="sendPrompt('Write a LinkedIn post about 5 signs your business website needs a redesign')">LinkedIn caption ↗</span>
+    </div>
+  </div>
+</div>
+
+<div class="tips-box">
+  <div class="tips-title">How to write each post — simple process for a solo dev</div>
+  <div class="tip-row"><div class="tip-dot"></div>Click "Write full post ↗" above — I'll generate the complete draft for any post instantly</div>
+  <div class="tip-row"><div class="tip-dot"></div>Each post should be 800–1200 words. Long enough to rank, short enough that busy people read it</div>
+  <div class="tip-row"><div class="tip-dot"></div>Add 1–2 real examples from your own client work — this is your secret weapon over generic blogs</div>
+  <div class="tip-row"><div class="tip-dot"></div>End every post with a soft CTA — "Need help with this? Get a free quote from RKWS"</div>
+  <div class="tip-row"><div class="tip-dot"></div>Share each post on LinkedIn, WhatsApp Business, and your Google Business Profile the day it goes live</div>
+  <div class="tip-row"><div class="tip-dot"></div>Don't publish and forget — go back after 3 months and update each post with fresh info</div>
+</div>
+
+</div>

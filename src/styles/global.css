@@ -3163,3 +3163,92 @@ button {
     padding: 64px 0;
   }
 }
+
+/* --- Digital Architect Premium UI Styles --- */
+
+:root {
+  --da-accent: #185FA5;
+  --da-accent-soft: #E6F1FB;
+  --da-text: #081420;
+  --da-text-muted: #5d6570;
+  --da-surface: #ffffff;
+  --da-surface-alt: #f8fbff;
+  --da-border: rgba(0,0,0,0.06);
+}
+
+.da-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  background: var(--da-accent);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.da-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(24, 95, 165, 0.25);
+  background: #14508c;
+}
+
+.da-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  background: transparent;
+  color: var(--da-text);
+  border: 2px solid #e1e8f0;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.da-btn-secondary:hover {
+  background: #f8fbff;
+  border-color: #cbd5e1;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  background: url("https://res.cloudinary.com/dvwos8p6p/image/upload/v1691234567/noise_u5m8.png");
+}
+
+.da-nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--da-text-muted);
+  transition: color 0.2s ease;
+}
+
+.da-nav-link:hover {
+  color: var(--da-accent);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .massive-text { font-size: 2.5rem !important; }
+  .da-section { padding: 60px 24px !important; }
+}

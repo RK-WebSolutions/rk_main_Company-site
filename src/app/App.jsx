@@ -1,10 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReferenceSite from "../features/marketing/ReferenceSite.jsx";
-import { getPageContent } from "../data/siteContent.js";
+import Blog from "../features/marketing/Blog.jsx";
+import ContentCalendar from "../features/marketing/ContentCalendar.jsx";
 
 function App() {
-  const currentPage = getPageContent(window.location.pathname);
-
-  return <ReferenceSite currentPage={currentPage} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ReferenceSite />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/strategy" element={<ContentCalendar />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

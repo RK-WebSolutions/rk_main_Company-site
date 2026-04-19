@@ -1,0 +1,213 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.site{font-family:var(--font-sans);color:var(--color-text-primary)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
+.logo{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.logo span{color:#185FA5}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:13px;color:var(--color-text-secondary);text-decoration:none}
+.nav-cta{font-size:13px;font-weight:500;padding:7px 16px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);color:var(--color-text-primary);background:transparent;cursor:pointer}
+.hero{padding:52px 24px 44px;text-align:center;border-bottom:0.5px solid var(--color-border-tertiary)}
+.hero-badge{display:inline-block;font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;background:#E6F1FB;color:#0C447C;margin-bottom:18px}
+.hero h1{font-size:28px;font-weight:500;line-height:1.3;margin-bottom:14px;color:var(--color-text-primary)}
+.hero h1 span{color:#185FA5}
+.hero-sub{font-size:14px;color:var(--color-text-secondary);line-height:1.7;max-width:420px;margin:0 auto 24px}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-size:13px;font-weight:500;padding:10px 22px;border-radius:var(--border-radius-md);background:#185FA5;color:#fff;border:none;cursor:pointer}
+.btn-ghost{font-size:13px;padding:10px 22px;border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-primary);border:0.5px solid var(--color-border-secondary);cursor:pointer}
+.wa-float{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:12px;color:#0F6E56;background:#E1F5EE;padding:6px 14px;border-radius:20px;cursor:pointer}
+.wa-dot{width:8px;height:8px;border-radius:50%;background:#1D9E75}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.stat{padding:20px 16px;text-align:center;border-right:0.5px solid var(--color-border-tertiary)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.stat-label{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.section{padding:32px 24px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.sec-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-tertiary);margin-bottom:18px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.svc-card{padding:16px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-primary)}
+.svc-icon{width:28px;height:28px;border-radius:6px;margin-bottom:10px;display:flex;align-items:center;justify-content:center}
+.svc-title{font-size:13px;font-weight:500;margin-bottom:4px;color:var(--color-text-primary)}
+.svc-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.port-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-primary)}
+.port-thumb{height:72px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+.port-info{padding:10px 12px}
+.port-title{font-size:12px;font-weight:500;margin-bottom:2px}
+.port-tag{font-size:10px;color:var(--color-text-tertiary)}
+.about-row{display:flex;gap:16px;align-items:flex-start}
+.avatar{width:56px;height:56px;min-width:56px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;color:#0C447C}
+.about-text h3{font-size:15px;font-weight:500;margin-bottom:4px}
+.about-text p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.skills-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.skill-pill{font-size:11px;padding:3px 10px;border-radius:20px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary)}
+.testimonials{display:flex;flex-direction:column;gap:10px}
+.testi{padding:14px 16px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-primary)}
+.testi-text{font-size:13px;color:var(--color-text-primary);line-height:1.6;margin-bottom:8px}
+.testi-author{display:flex;align-items:center;gap:8px}
+.testi-avatar{width:24px;height:24px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#085041}
+.testi-name{font-size:12px;font-weight:500}
+.testi-role{font-size:11px;color:var(--color-text-tertiary)}
+.stars{color:#BA7517;font-size:12px;letter-spacing:1px;margin-bottom:4px}
+.cta-section{padding:40px 24px;text-align:center;background:var(--color-background-secondary)}
+.cta-section h2{font-size:20px;font-weight:500;margin-bottom:8px}
+.cta-section p{font-size:13px;color:var(--color-text-secondary);margin-bottom:20px;line-height:1.6}
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.footer{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:0.5px solid var(--color-border-tertiary)}
+.footer-copy{font-size:12px;color:var(--color-text-tertiary)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:12px;color:var(--color-text-tertiary);text-decoration:none}
+</style>
+
+<div class="site">
+
+<nav class="nav">
+  <div class="logo">RK<span>WS</span></div>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">Work</a>
+    <a href="#">About</a>
+  </div>
+  <button class="nav-cta" onclick="sendPrompt('Write the copy for my website contact page')">Contact</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Solo web developer · Coimbatore, India</div>
+  <h1>Websites that <span>work for</span><br>your business</h1>
+  <p class="hero-sub">Custom web design, development & digital solutions for businesses in India and worldwide — built fast, built right.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="sendPrompt('Write a compelling call to action for getting a free quote on a web developer website')">Get a free quote</button>
+    <button class="btn-ghost" onclick="sendPrompt('What should I put in my portfolio as a web developer?')">See my work</button>
+  </div>
+  <div>
+    <div class="wa-float" onclick="sendPrompt('How do I add a WhatsApp chat button to my website?')">
+      <div class="wa-dot"></div>
+      Chat on WhatsApp
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects delivered</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years experience</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client satisfaction</div></div>
+</div>
+
+<section class="section">
+  <div class="sec-label">Services</div>
+  <div class="services-grid">
+    <div class="svc-card" onclick="sendPrompt('Write a service description for web design on my developer website')">
+      <div class="svc-icon" style="background:#E6F1FB">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="2" width="14" height="10" rx="2" stroke="#185FA5" stroke-width="1.2"/><path d="M5 15h6M8 12v3" stroke="#185FA5" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="svc-title">Web design</div>
+      <div class="svc-desc">Clean, modern UI that converts visitors to clients</div>
+    </div>
+    <div class="svc-card" onclick="sendPrompt('Write a service description for WordPress development')">
+      <div class="svc-icon" style="background:#E1F5EE">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#0F6E56" stroke-width="1.2"/><path d="M2 8h12M8 2c-2 2-2 8 0 12M8 2c2 2 2 8 0 12" stroke="#0F6E56" stroke-width="1.2"/></svg>
+      </div>
+      <div class="svc-title">WordPress dev</div>
+      <div class="svc-desc">Fast, custom WP sites with full CMS control</div>
+    </div>
+    <div class="svc-card" onclick="sendPrompt('What should I include in an e-commerce website service offering?')">
+      <div class="svc-icon" style="background:#FAEEDA">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h2l2 7h6l2-5H5" stroke="#854F0B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="13" r="1" fill="#854F0B"/><circle cx="11" cy="13" r="1" fill="#854F0B"/></svg>
+      </div>
+      <div class="svc-title">E-commerce</div>
+      <div class="svc-desc">WooCommerce & Shopify stores that sell</div>
+    </div>
+    <div class="svc-card" onclick="sendPrompt('What SEO services should a web developer offer?')">
+      <div class="svc-icon" style="background:#EEEDFE">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#534AB7" stroke-width="1.2"/><path d="M10.5 10.5L14 14" stroke="#534AB7" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="svc-title">SEO & marketing</div>
+      <div class="svc-desc">Get found on Google, grow organic traffic</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-label">Recent work</div>
+  <div class="portfolio-grid">
+    <div class="port-card" onclick="sendPrompt('How do I write a portfolio case study for a web development project?')">
+      <div class="port-thumb" style="background:#E6F1FB;color:#0C447C">Restaurant website</div>
+      <div class="port-info"><div class="port-title">Spice Garden, CBE</div><div class="port-tag">WordPress · SEO · +80% bookings</div></div>
+    </div>
+    <div class="port-card">
+      <div class="port-thumb" style="background:#E1F5EE;color:#085041">E-commerce store</div>
+      <div class="port-info"><div class="port-title">Fashion brand, Delhi</div><div class="port-tag">WooCommerce · 200+ orders/mo</div></div>
+    </div>
+    <div class="port-card">
+      <div class="port-thumb" style="background:#FAEEDA;color:#633806">Business website</div>
+      <div class="port-info"><div class="port-title">CA firm, Bangalore</div><div class="port-tag">WordPress · Lead gen · Mobile-first</div></div>
+    </div>
+    <div class="port-card">
+      <div class="port-thumb" style="background:#EEEDFE;color:#3C3489">SaaS landing page</div>
+      <div class="port-info"><div class="port-title">Tech startup, US client</div><div class="port-tag">React · Fast load · Conversion CRO</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-label">About me</div>
+  <div class="about-row">
+    <div class="avatar">RK</div>
+    <div class="about-text">
+      <h3>Hi, I'm [Your Name]</h3>
+      <p>Solo web developer based in Coimbatore with 5+ years building websites for businesses across India and globally. I work directly with you — no middlemen, no delays.</p>
+      <div class="skills-row">
+        <span class="skill-pill">WordPress</span>
+        <span class="skill-pill">React</span>
+        <span class="skill-pill">PHP</span>
+        <span class="skill-pill">WooCommerce</span>
+        <span class="skill-pill">SEO</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">Shopify</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sec-label">What clients say</div>
+  <div class="testimonials">
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Delivered my website in 10 days — clean design, fast loading, and he helped me with Google rankings too. Highly recommend!"</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SR</div>
+        <div><div class="testi-name">Suresh R.</div><div class="testi-role">Restaurant owner, Coimbatore</div></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Professional, responsive, and the final product exceeded what we expected. Our online store doubled its sales in 3 months."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">PM</div>
+        <div><div class="testi-name">Priya M.</div><div class="testi-role">Fashion entrepreneur, Delhi</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Ready to build your website?</h2>
+  <p>Let's talk about your project. Free consultation,<br>no commitment required.</p>
+  <div class="cta-row">
+    <button class="btn-primary" onclick="sendPrompt('Help me write a free quote form for my web developer website')">Get a free quote</button>
+    <button class="btn-ghost" onclick="sendPrompt('How should I price my web design packages as a solo developer in India?')">See pricing ↗</button>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-copy">© 2025 RKWS · Coimbatore, India</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+</div>

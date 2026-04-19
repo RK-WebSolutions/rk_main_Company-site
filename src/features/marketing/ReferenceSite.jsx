@@ -1,125 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import siteContent from "../../data/siteContent.js";
 
 const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="3 7 6 10 11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
 );
 
-const ExternalIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+const WhatsAppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#1D9E75" style={{ marginRight: 8, flexShrink: 0 }}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.054 23.486a.5.5 0 0 0 .609.61l5.7-1.465A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.523-5.204-1.43l-.374-.22-3.384.87.893-3.3-.243-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
 );
 
-export default function ReferenceSite({ currentPage }) {
+export default function ReferenceSite() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [theme, setTheme] = useState("light");
-  const [openFaq, setOpenFaq] = useState(-1);
+  const [isUSD, setIsUSD] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Parallax & Scroll Features Refs
-  const horizontalRef = useRef(null);
-  const expandRef = useRef(null);
-  const scrubRef = useRef(null);
-
-  // States
-  const [horizontalX, setHorizontalX] = useState(0);
-  const [expandWidth, setExpandWidth] = useState(70);
-  const [expandScale, setExpandScale] = useState(1.2);
-  const [scrubProgress, setScrubProgress] = useState(0);
-
   useEffect(() => {
-    // Window resize handler for mobile responsiveness
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    document.title = currentPage.title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", currentPage.metaDescription);
-    }
     
     const handleScroll = () => {
-      const cy = window.scrollY;
-      setScrollY(cy);
-      setIsScrolled(cy > 10);
-      
-      // Theme Shift logic for dark showcase
-      const workEl = document.getElementById("work");
-      if (workEl) {
-        const top = workEl.offsetTop;
-        const height = workEl.offsetHeight;
-        if (cy > top - window.innerHeight / 1.5 && cy < top + height) {
-          setTheme("dark");
-        } else {
-          setTheme("light");
-        }
-      }
-
-      const mobileCheck = window.innerWidth <= 768;
-
-      if (!mobileCheck) {
-          // Horizontal Scroll Array Logic (Desktop Only)
-          if (horizontalRef.current) {
-            const top = horizontalRef.current.offsetTop;
-            const height = horizontalRef.current.offsetHeight - window.innerHeight;
-            if (cy >= top && cy <= top + height) {
-              const progress = (cy - top) / height;
-              setHorizontalX(progress * -75);
-            } else if (cy < top) {
-              setHorizontalX(0);
-            } else {
-              setHorizontalX(-75);
-            }
-          }
-
-          // Expanding Image Cover Logic (Desktop Only)
-          if (expandRef.current) {
-            const top = expandRef.current.offsetTop;
-            const start = top - window.innerHeight;
-            const end = top;
-            if (cy > start && cy <= end) {
-              const progress = (cy - start) / (end - start); 
-              setExpandWidth(60 + (progress * 40)); 
-              setExpandScale(1.3 - (progress * 0.3)); 
-            } else if (cy > end) {
-              setExpandWidth(100);
-              setExpandScale(1.0);
-            } else {
-              setExpandWidth(60);
-              setExpandScale(1.3);
-            }
-          }
-      }
-
-      // Text Scrubbing Logic Form (Works on all devices)
-      if (scrubRef.current) {
-        const top = scrubRef.current.offsetTop;
-        const start = top - window.innerHeight + 300;
-        const end = top - 100;
-        if (cy > start && cy <= end) {
-          const progress = (cy - start) / (end - start);
-          setScrubProgress(progress * 100);
-        } else if (cy > end) {
-          setScrubProgress(100);
-        } else {
-          setScrubProgress(0);
-        }
-      }
+      setIsScrolled(window.scrollY > 20);
     };
+    window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    
     return () => {
-        window.removeEventListener("scroll", handleScroll);
-        window.removeEventListener("resize", handleResize);
-    }
-  }, [currentPage]);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleWhatsApp = (e) => {
     e.preventDefault();
-    const text = encodeURIComponent(`Hi ${siteContent.brandName}, I am interested in a free homepage demo for my business in ${currentPage.city}.`);
+    const text = encodeURIComponent(`Hi ${siteContent.brandName}, I'm interested in getting a quote for my project.`);
     window.open(`${siteContent.contact.whatsappHref}?text=${text}`, "_blank");
   };
 
@@ -127,341 +44,427 @@ export default function ReferenceSite({ currentPage }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    const text = encodeURIComponent(`New Website Enquiry:\nName: ${data.name}\nBusiness: ${data.business}\nCity: ${data.city}\nPhone: ${data.phone}\nMessage: ${data.message}`);
+    const services = Array.from(formData.getAll("services")).join(", ");
+    const text = encodeURIComponent(`New Quote Request:\nName: ${data.name}\nPhone: ${data.phone}\nServices: ${services}\nMessage: ${data.message}`);
     window.open(`${siteContent.contact.whatsappHref}?text=${text}`, "_blank");
+    alert("Redirecting to WhatsApp for final submission...");
   };
 
-  return (
-    <div className={`da-page theme-${theme}`}>
-      <div className="noise-overlay"></div>
-      {/* Header */}
-      <header className={`da-header ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="da-container da-header-inner">
-          <a href="#" className="da-logo animate-up">
-            {siteContent.brandName}
-          </a>
-          <nav className="da-nav">
-            {siteContent.navItems.map((item, i) => (
-              <a key={i} href={item.href} className={`animate-up delay-${(i % 4) + 1}`}>{item.label}</a>
-            ))}
-          </nav>
-          <a href={siteContent.headerCta.href} className="da-btn-primary animate-up delay-4" style={{display: isMobile ? "none" : "flex", padding: "12px 24px"}} onClick={handleWhatsApp}>
-            Contact
-          </a>
-        </div>
-      </header>
+  const prices = isUSD 
+    ? ["$200", "$450", "$800"] 
+    : ["₹15,000", "₹35,000", "₹60,000"];
 
-      {/* Editorial Hero */}
-      <section className="da-hero">
-        <div className="da-container">
-          <div className="da-hero-grid">
-            <div style={{ transform: isMobile ? 'none' : `translateY(${scrollY * 0.15}px)` }}>
-              <h1 className="massive-text animate-up" dangerouslySetInnerHTML={{ __html: currentPage.heroHeading.replace('Website Developer', 'Website Developer<br/>') }} />
-              <p className="animate-up delay-1">
-                {currentPage.heroSubheading}
-              </p>
-              <div className="animate-up delay-2" style={{display: "flex", flexDirection: isMobile ? "column" : "row", gap: "16px", marginTop: "40px"}}>
-                <a href="#contact" className="da-btn-primary" onClick={handleWhatsApp}>Get The Request</a>
-                <a href="#work" className="da-btn-secondary">View Deployments</a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="da-hero-bento animate-up delay-3" style={{ transform: isMobile ? 'none' : `translateY(${scrollY * -0.05}px)` }}>
-            <div className="editorial-img tall"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80" alt="Gym Core" /></div>
-            {!isMobile && (
+  return (
+    <div className="rk-page">
+      <div className="noise-overlay" style={{ position: "fixed", inset: 0, opacity: 0.03, pointerEvents: "none", zIndex: 9999, background: "url('https://grainy-gradients.vercel.app/noise.svg')" }}></div>
+
+      {/* 🧭 Navigation */}
+      <nav style={{
+        position: "fixed", top: 0, width: "100%", zIndex: 100,
+        background: isScrolled ? "rgba(255, 255, 255, 0.85)" : "transparent",
+        backdropFilter: isScrolled ? "blur(12px)" : "none",
+        transition: "all 0.3s ease",
+        padding: isScrolled ? "12px 0" : "24px 0",
+        borderBottom: isScrolled ? "1px solid rgba(0,0,0,0.05)" : "none"
+      }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <a href="#" style={{ fontSize: 20, fontWeight: 800, color: "var(--da-text)", letterSpacing: "-0.05em" }}>
+            RK<span style={{ color: "#185FA5" }}>WS</span>
+          </a>
+          <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
+            {isMobile ? (
+              <a href="#contact" className="da-btn-primary" style={{ padding: "10px 20px", fontSize: 13, borderRadius: 8, background: "#185FA5" }}>GET QUOTE</a>
+            ) : (
               <>
-                <div className="editorial-img box"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Tech Architecture" /></div>
-                <div className="editorial-img box"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Medical Structure" /></div>
+                {siteContent.navItems.map((item, i) => (
+                  item.href.startsWith("/") ? (
+                    <Link key={i} to={item.href} style={{ fontSize: 13, fontWeight: 600, color: "var(--da-text-muted)", textDecoration: "none" }}>{item.label}</Link>
+                  ) : (
+                    <a key={i} href={item.href} style={{ fontSize: 13, fontWeight: 600, color: "var(--da-text-muted)" }}>{item.label}</a>
+                  )
+                ))}
+                <a href="#contact" className="da-btn-primary" style={{ padding: "10px 20px", fontSize: 13, borderRadius: 8, background: "#185FA5" }}>GET QUOTE</a>
               </>
             )}
           </div>
         </div>
+      </nav>
+
+      {/* 🔥 Hero Section */}
+      <section style={{ 
+        position: "relative",
+        padding: "200px 24px 120px", 
+        textAlign: "center", 
+        background: `linear-gradient(rgba(248, 251, 255, 0.9), rgba(255, 255, 255, 0.97)), url("${siteContent.hero.image}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        overflow: "hidden"
+      }}>
+        {/* ✨ Glassmorphism Ambient Elements */}
+        <div style={{ position: "absolute", top: "10%", left: "5%", width: 300, height: 300, background: "rgba(24, 95, 165, 0.05)", borderRadius: "50%", filter: "blur(80px)" }}></div>
+        <div style={{ position: "absolute", bottom: "10%", right: "5%", width: 400, height: 400, background: "rgba(24, 95, 165, 0.03)", borderRadius: "50%", filter: "blur(100px)" }}></div>
+
+        <div style={{ maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div style={{ display: "inline-block", backdropFilter: "blur(8px)", background: "rgba(230, 241, 251, 0.8)", border: "1px solid rgba(24, 95, 165, 0.1)", color: "#0C447C", padding: "6px 16px", borderRadius: 20, fontSize: 12, fontWeight: 600, marginBottom: 24, letterSpacing: "0.02em" }}>
+            {siteContent.hero.badge}
+          </div>
+          <h1
+            style={{ fontSize: isMobile ? 40 : 72, fontWeight: 700, lineHeight: 1, color: "#081420", marginBottom: 32, letterSpacing: "-0.05em" }}
+            dangerouslySetInnerHTML={{ __html: siteContent.hero.heading }}
+          />
+          <p style={{ fontSize: isMobile ? 18 : 22, color: "#5d6570", lineHeight: 1.6, maxWidth: 680, margin: "0 auto 48px", fontWeight: 500 }}>
+            {siteContent.hero.subheading}
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+            <a href="#contact" className="da-btn-primary" style={{ padding: "20px 42px", fontSize: 16, borderRadius: 12, background: "#185FA5", display: "flex", alignItems: "center", gap: 10 }}>{siteContent.hero.primaryCTA}</a>
+            <a href="#work" className="da-btn-secondary" style={{ padding: "20px 42px", fontSize: 16, borderRadius: 12, border: "1px solid #e1e8f0", backdropFilter: "blur(4px)", background: "rgba(255,255,255,0.5)" }}>{siteContent.hero.secondaryCTA}</a>
+          </div>
+          <a href={siteContent.contact.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", marginTop: 32, fontSize: 14, color: "#0F6E56", background: "rgba(225, 245, 238, 0.8)", backdropFilter: "blur(4px)", border: "1px solid rgba(15, 110, 86, 0.1)", padding: "10px 20px", borderRadius: 20, fontWeight: 600 }}>
+            <WhatsAppIcon /> {siteContent.hero.whatsappText}
+          </a>
+        </div>
       </section>
 
-      {/* Infinite Ticker Tape */}
-      <section className="ticker-wrap animate-up delay-4">
-        <div className="ticker-track">
-          {/* Double array to create seamless loop */}
-          {[...Array(2)].map((_, idx) => (
-             <React.Fragment key={idx}>
-                <div className="ticker-item">React Architecture</div>
-                <div className="ticker-item">Edge Computing</div>
-                <div className="ticker-item">Conversion Psychology</div>
-                <div className="ticker-item">Vercel Deployments</div>
-                <div className="ticker-item">Sub-Second Load Times</div>
-                <div className="ticker-item">Local Dominance</div>
-             </React.Fragment>
+      {/* 📊 Stats */}
+      <section style={{ borderY: "1px solid rgba(0,0,0,0.05)", background: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)" }}>
+          {siteContent.results.map((stat, i) => (
+            <div key={i} style={{ padding: "40px 24px", textAlign: "center", borderRight: !isMobile && i < 2 ? "1px solid rgba(0,0,0,0.05)" : "none", borderBottom: isMobile && i < 2 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
+              <div style={{ fontSize: 40, fontWeight: 800, color: "#081420", marginBottom: 4 }}>{stat.value}</div>
+              <div style={{ fontSize: 13, color: "#5d6570", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em" }}>{stat.label}</div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* About Section - Editorial Stats */}
-      <section id="about" className="da-section">
-        <div className="da-container editorial-split">
-           <div>
-             <h2 className="huge-text animate-up">{siteContent.aboutSection.heading}</h2>
-           </div>
-           <div>
-             <p className="editorial-lead animate-up delay-1">{siteContent.aboutSection.content}</p>
-             <div className="stats-grid animate-up delay-2">
-               {siteContent.aboutSection.stats.map((stat, i) => (
-                 <div key={i}>
-                   <div className="stat-num">{stat.number}</div>
-                   <div className="stat-label">{stat.label}</div>
-                 </div>
-               ))}
-             </div>
-           </div>
-        </div>
-      </section>
-
-      {/* Showcase / Featured Work */}
-      <section id="work" className="da-section-alt">
-        <div className="da-container">
-          <div className="editorial-split animate-up" style={{ marginBottom: "80px" }}>
-            <h2 className="huge-text">Featured<br/>Deployments.</h2>
-            <p className="editorial-lead" style={{ alignSelf: "end" }}>Websites strictly optimized for absolute performance, immediate trust, and aggressive local market domination.</p>
+      {/* 🎯 Services */}
+      <section id="services" style={{ padding: "100px 24px", background: "#f8fbff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>{siteContent.services.heading}</h2>
+            <h3 style={{ fontSize: isMobile ? 28 : 40, fontWeight: 700, color: "#081420" }}>Built for Performance</h3>
           </div>
-          
-          <div className="da-pic-grid">
-            {siteContent.showcase.map((project, i) => (
-              <div key={i} className={`da-pic-card ${i === 0 ? 'full-width' : ''} animate-up delay-${(i % 3) + 1}`}>
-                <div className="img-box" style={{ transform: isMobile ? 'none' : `translateY(${(scrollY - 1000) * -0.05 * (i % 2 === 0 ? 1 : 1.5)}px)` }}>
-                  <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-                <div>
-                  <div style={{ color: "var(--da-text-muted)", textTransform: "uppercase", letterSpacing: "0.1em", fontSize: "0.85rem", marginBottom: "16px" }}>{project.category}</div>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Expanding Image Reveal Feature (Turns into static hero on mobile) */}
-      <section ref={expandRef} style={{ display: "flex", justifyContent: "center", padding: isMobile ? "0px" : "100px 0" }}>
-        <div style={{
-          width: isMobile ? "100vw" : `${expandWidth}vw`, 
-          height: isMobile ? "60vh" : "80vh", 
-          overflow: "hidden", 
-          position: "relative",
-          borderRadius: "0px",
-          transition: "width 0.15s ease-out"
-        }}>
-          <img 
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80" 
-            style={{ width: "100%", height: "100%", objectFit: "cover", transform: isMobile ? "none" : `scale(${expandScale})`, transition: "transform 0.15s ease-out", filter: "brightness(40%) grayscale(50%)" }} 
-            alt="The Team" 
-          />
-          <div style={{ 
-            position: "absolute", top: 0, left: 0, width: "100%", height: "100%", 
-            display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", 
-            textAlign: "center", color: "#fff", padding: "0 24px",
-            opacity: isMobile ? 1 : (expandWidth > 85 ? 1 : 0), 
-            transform: isMobile ? "none" : `translateY(${expandWidth > 85 ? 0 : 40}px)`, 
-            transition: "all 0.6s ease"
-          }}>
-             <h2 className="expand-title">Engineered in Tamil Nadu.<br/>Deployed Globally.</h2>
-             <p style={{ fontSize: isMobile ? "1.1rem" : "1.25rem", color: "#ddd", maxWidth: "600px", lineHeight: "1.6" }}>Our mission is to arm local businesses with the exact same digital infrastructure and user-psychology systems utilized by silicon valley corporations.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services List - Human Editorial Layout */}
-      <section id="services" className="da-section">
-        <div className="da-container">
-          <div className="editorial-split animate-up" style={{ marginBottom: "60px" }}>
-             <h2 className="huge-text">Architecture<br/>& Services.</h2>
-          </div>
-          <div className="service-list">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {siteContent.services.items.map((svc, i) => (
-              <div key={i} className="service-row animate-up delay-1">
-                <div className="service-num">0{i+1}.</div>
-                <div className="service-title"><h3>{svc.title}</h3></div>
-                <div className="service-desc">{svc.description}</div>
+              <div key={i} style={{ padding: 40, background: "#fff", borderRadius: 24, boxShadow: "0 10px 40px rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.03)" }}>
+                <div style={{ fontSize: 32, marginBottom: 24 }}>{svc.icon}</div>
+                <h4 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>{svc.title}</h4>
+                <p style={{ color: "#5d6570", lineHeight: 1.6, fontSize: 15 }}>{svc.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section (Sticky Horizontal on Desktop, Standard Stack on Mobile) */}
-      {!isMobile ? (
-        <section id="process" ref={horizontalRef} style={{ height: "300vh", position: "relative" }}>
-          <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "center", background: "var(--da-surface)", borderTop: "1px solid var(--da-ring)" }}>
-            <div className="da-container" style={{ marginBottom: "40px", width: "100%" }}>
-              <h2 className="huge-text">Deployment Engine.</h2>
+      {/* 🧱 Portfolio */}
+      <section id="work" style={{ padding: "120px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 80, flexWrap: "wrap", gap: 24 }}>
+            <div>
+              <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Deployments</h2>
+              <h3 style={{ fontSize: isMobile ? 28 : 48, fontWeight: 700, color: "#081420", letterSpacing: "-0.03em" }}>Digital Infrastructure Showcase</h3>
             </div>
-            
-            <div style={{ 
-              display: "flex", 
-              width: "400vw", 
-              transform: `translateX(${horizontalX}vw)`, 
-              transition: "transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)", 
-              paddingLeft: "40px" 
-            }}>
-              {siteContent.process.steps.map((step, i) => (
-                <div key={i} style={{ width: "60vw", padding: "0", flexShrink: 0 }}>
-                  <div className="process-card-raw">
-                    <div className="process-num">0{i+1}</div>
-                    <h3 style={{fontSize: "2.5rem", marginBottom: "24px"}}>{step.title.replace(/\d+\.\s*/, '')}</h3>
-                    <p style={{fontSize: "1.25rem", lineHeight: "1.6", color: "var(--da-text-muted)", maxWidth: "500px"}}>{step.description}</p>
-                  </div>
+            <a href={siteContent.contact.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ fontSize: 16, fontWeight: 700, color: "#185FA5", textDecoration: "none", borderBottom: "2px solid #185FA5", paddingBottom: 4 }}>VIEW LIVE BUILDS</a>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 40 }}>
+            {siteContent.showcase.map((project, i) => (
+              <div key={i} style={{ cursor: project.link ? "pointer" : "default" }} onClick={() => project.link && window.open(project.link, "_blank", "noopener,noreferrer")}>
+                <div style={{ position: "relative", overflow: "hidden", borderRadius: 24, height: 400, background: "#f0f4f8", marginBottom: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.03)" }}>
+                  <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)" }} onMouseEnter={(e) => e.target.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.target.style.transform = "scale(1)"} />
+                  <div style={{ position: "absolute", top: 20, right: 20, background: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)", padding: "6px 14px", borderRadius: 10, fontSize: 10, fontWeight: 800, letterSpacing: "0.05em" }}>{project.category.toUpperCase()}</div>
                 </div>
-              ))}
-              <div style={{ width: "20vw", flexShrink: 0 }}></div>
-            </div>
-          </div>
-        </section>
-      ) : (
-        <section id="process" className="da-section">
-            <div className="da-container">
-              <h2 className="huge-text" style={{ marginBottom: "60px" }}>Deployment Engine.</h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-                 {siteContent.process.steps.map((step, i) => (
-                    <div key={i} className="process-card-mobile">
-                      <div className="process-num">0{i+1}</div>
-                      <h3 style={{fontSize: "1.75rem", marginBottom: "16px"}}>{step.title.replace(/\d+\.\s*/, '')}</h3>
-                      <p style={{fontSize: "1.1rem", lineHeight: "1.6", color: "var(--da-text-muted)"}}>{step.description}</p>
-                    </div>
-                 ))}
-              </div>
-            </div>
-        </section>
-      )}
-
-      {/* Secure Scroll Fade Typography */}
-      <section ref={scrubRef} className="da-section" style={{ padding: isMobile ? "80px 0" : "200px 0", background: "var(--da-surface)" }}>
-         <div className="da-container" style={{ textAlign: "center" }}>
-            <h2 className="scrubbing-text" style={{
-                color: "var(--da-text)",
-                opacity: isMobile ? 1 : ((scrubProgress / 100) + 0.1),
-                transform: isMobile ? "none" : `translateY(${(100 - scrubProgress) * 0.5}px)`,
-                transition: "opacity 0.1s ease-out, transform 0.1s ease-out"
-            }}>
-               We don't just build websites.<br />
-               We build digital engines designed<br />
-               specifically to increase your revenue.
-            </h2>
-         </div>
-      </section>
-      
-      {/* FAQ Section */}
-      <section id="faq" className="da-section-alt">
-        <div className="da-container faq-grid">
-          <div>
-            <h2 className="huge-text animate-up">Questions.<br/>Answered.</h2>
-            <p className="editorial-lead animate-up delay-1" style={{ marginTop: "32px", maxWidth: "400px" }}>Radical transparency on ownership, cost, and hosting.</p>
-          </div>
-          <div className="faq-list animate-up delay-2">
-            {siteContent.faqs.map((faq, i) => (
-              <div key={i} className="faq-item" onClick={() => setOpenFaq(i === openFaq ? -1 : i)}>
-                 <div className="faq-q">
-                    {faq.question}
-                    <span className="faq-icon" style={{ transform: `rotate(${openFaq === i ? '45deg' : '0deg'})`, transition: "transform 0.3s" }}>+</span>
-                 </div>
-                 <div className="faq-a" style={{ maxHeight: openFaq === i ? '500px' : '0', overflow: 'hidden', transition: 'max-height 0.4s ease' }}>
-                    <p>{faq.answer}</p>
-                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="da-section border-top-none">
-        <div className="da-container">
-          <div className="editorial-split animate-up" style={{ marginBottom: "80px" }}>
-            <h2 className="huge-text">Investment.</h2>
-            <p className="editorial-lead" style={{ alignSelf: "end" }}>Standardized models tailored for pure dominance. Never hidden fees.</p>
-          </div>
-          <div className="da-pricing-grid">
-            {siteContent.packages.map((pkg, i) => (
-              <div key={i} className={`da-pricing-card ${pkg.featured ? 'featured' : ''} animate-up delay-${(i % 3) + 1}`}>
-                <h3>{pkg.name}</h3>
-                <p className={pkg.featured ? "" : "da-text-muted"} style={{minHeight: "64px", fontSize: "1.1rem"}}>{pkg.description}</p>
-                <div className="da-pricing-v">{pkg.price}</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0", marginBottom: "40px" }}>
-                  {pkg.features.map((feat, j) => (
-                    <div key={j} className="da-feat">
-                      <CheckIcon />
-                      <span>{feat}</span>
-                    </div>
+                <h4 style={{ fontSize: 22, fontWeight: 700, marginBottom: 12, color: "#081420" }}>{project.title}</h4>
+                <p style={{ color: "#5d6570", fontSize: 15, lineHeight: 1.6, marginBottom: 20 }}>{project.description}</p>
+                <div style={{ display: "flex", gap: 8 }}>
+                  {["Performance", "Architecture", "Logic"].map((tag, j) => (
+                    <span key={j} style={{ fontSize: 10, fontWeight: 700, color: "#5d6570", background: "#f1f5f9", padding: "4px 8px", borderRadius: 6 }}>{tag}</span>
                   ))}
                 </div>
-                <a href="#contact" className={pkg.featured ? "da-btn-secondary" : "da-btn-primary"} style={{width: "100%"}} onClick={(e) => {
-                  e.preventDefault();
-                  const text = encodeURIComponent(`Hi ${siteContent.brandName}, I am interested in the ${pkg.name} package.`);
-                  window.open(`${siteContent.contact.whatsappHref}?text=${text}`, "_blank");
-                }}>Initiate Brief</a>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="da-section">
-        <div className="da-container editorial-split">
-            <div className="animate-up">
-              <h2 className="huge-text" style={{marginBottom: "40px"}}>{siteContent.freeDemo.title}</h2>
-              <p className="editorial-lead" style={{marginBottom: "60px", maxWidth: "450px"}}>{siteContent.freeDemo.content}</p>
-              <div style={{display: "grid", gap: "40px"}}>
-                <div>
-                  <h4 style={{ textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--da-text-muted)", fontSize: "0.85rem", marginBottom: "8px" }}>Direct Line</h4>
-                  <p style={{fontSize: "1.5rem", color: "var(--da-text)", fontWeight: "600"}}>{siteContent.contact.phoneDisplay}</p>
-                </div>
-                <div>
-                  <h4 style={{ textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--da-text-muted)", fontSize: "0.85rem", marginBottom: "8px" }}>Electronic Mail</h4>
-                  <p style={{fontSize: "1.5rem", color: "var(--da-text)", fontWeight: "600"}}>{siteContent.contact.email}</p>
-                </div>
+      {/* 🧑💼 About / Founder */}
+      <section id="founder" style={{ padding: "100px 24px", background: "#081420", color: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.5fr", gap: 80, alignItems: "center" }}>
+          <div>
+            <div style={{ position: "relative" }}>
+              <div style={{ width: "100%", paddingBottom: "125%", borderRadius: 32, overflow: "hidden", background: "#f0f4f8" }}>
+                <img src={siteContent.founder.image} alt={siteContent.founder.name} style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", top: 0, left: 0 }} />
               </div>
-            </div>
-            
-            <div className="animate-up delay-2">
-              <form onSubmit={handleFormSubmit}>
-                <input type="text" name="name" className="form-input" required placeholder="Partner Name" />
-                <input type="text" name="business" className="form-input" placeholder="Enterprise Name" />
-                <input type="text" name="city" className="form-input" defaultValue={currentPage.city} placeholder="City Array" />
-                <input type="tel" name="phone" className="form-input" required placeholder="Mobile Communication" />
-                <textarea name="message" className="form-input" rows="3" placeholder="Project Directive..."></textarea>
-                <button type="submit" className="da-btn-primary" style={{ marginTop: "24px" }}>Transmit Request <ExternalIcon style={{marginLeft: "12px"}}/></button>
-              </form>
-            </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer>
-        <div className="da-container">
-          <div className="footer-grid">
-            <div className="animate-up">
-              <h3 style={{marginBottom: "24px", fontSize: "1.25rem", textTransform: "uppercase", letterSpacing: "-0.02em"}}>{siteContent.brandName}</h3>
-              <p style={{color: "var(--da-text-muted)", fontSize: "1.1rem", maxWidth: "300px"}}>{siteContent.footer.tagline}</p>
-            </div>
-            <div className="animate-up delay-1">
-              <h4>Deployment Zones</h4>
-              <div>
-                {siteContent.serviceAreas.map((loc, i) => (
-                  <a key={i} href={loc.path}>{loc.city}</a>
-                ))}
-              </div>
-            </div>
-            <div className="animate-up delay-2">
-              <h4>Architecture</h4>
-              <div>
-                {siteContent.navItems.map((item, i) => (
-                  <a key={i} href={item.href}>{item.label}</a>
-                ))}
+              <div style={{ position: "absolute", bottom: -20, left: -20, background: "#185FA5", color: "#fff", padding: "24px", borderRadius: 16, fontWeight: 800, backdropFilter: "blur(12px)", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", zIndex: 1 }}>
+                 {siteContent.brandName} FOUNDER
               </div>
             </div>
           </div>
-          <div style={{borderTop: "1px solid var(--da-ring)", paddingTop: "40px", color: "var(--da-text-muted)", fontSize: "0.9rem", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: isMobile ? "center" : "left"}}>
-            &copy; {new Date().getFullYear()} {siteContent.brandName} - Engineered by Humans
+          <div>
+            <h2 style={{ fontSize: 13, fontWeight: 800, color: "#3da9ff", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 24 }}>{siteContent.founder.intro}</h2>
+            <h3 style={{ fontSize: isMobile ? 32 : 48, fontWeight: 700, marginBottom: 32, lineHeight: 1.2 }}>{siteContent.founder.mission}</h3>
+            <p style={{ fontSize: 18, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", marginBottom: 40 }}>{siteContent.founder.bio}</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 48 }}>
+              {siteContent.founder.skills.map((skill, i) => (
+                <span key={i} style={{ padding: "8px 16px", background: "rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 13, fontWeight: 600 }}>{skill}</span>
+              ))}
+            </div>
+            <a href="#contact" className="da-btn-primary" style={{ background: "#6366F1", color: "#fff", padding: "18px 40px", borderRadius: 12, fontWeight: 700 }}>{siteContent.founder.cta}</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 💰 Pricing */}
+      <section id="pricing" style={{ padding: "100px 24px", background: "#f8fbff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+             <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Pricing</h2>
+             <h3 style={{ fontSize: 32, fontWeight: 700, color: "#081420", marginBottom: 24 }}>{siteContent.pricing.heading}</h3>
+             
+             {/* 💱 Currency Toggle */}
+             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 48 }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: !isUSD ? "#185FA5" : "#5d6570" }}>₹ INR</span>
+                <div onClick={() => setIsUSD(!isUSD)} style={{ width: 50, height: 26, background: isUSD ? "#185FA5" : "#cbd5e1", borderRadius: 13, cursor: "pointer", position: "relative", transition: "0.3s" }}>
+                  <div style={{ width: 20, height: 20, background: "#fff", borderRadius: "50%", position: "absolute", top: 3, left: isUSD ? 27 : 3, transition: "0.3s", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}></div>
+                </div>
+                <span style={{ fontSize: 14, fontWeight: 700, color: isUSD ? "#185FA5" : "#5d6570" }}>$ USD</span>
+             </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 24, marginBottom: 80 }}>
+            {siteContent.pricing.plans.map((plan, i) => (
+              <div key={i} style={{ padding: 40, background: "#fff", borderRadius: 24, position: "relative", border: plan.popular ? "2px solid #185FA5" : "1px solid rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", transition: "transform 0.3s ease" }}>
+                {plan.popular && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: "#185FA5", color: "#fff", fontSize: 11, fontWeight: 800, padding: "4px 16px", borderRadius: 20, letterSpacing: "0.05em" }}>MOST POPULAR</div>}
+                <div style={{ fontSize: 15, fontWeight: 700, color: "#5d6570", marginBottom: 12 }}>{plan.name}</div>
+                <div style={{ fontSize: 36, fontWeight: 800, color: "#081420", marginBottom: 24 }}>
+                  {prices[i]} <span style={{ fontSize: 14, fontWeight: 500, color: "#5d6570" }}>{i === 0 ? "fixed" : "onwards"}</span>
+                </div>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 40px" }}>
+                  {plan.features.map((feat, j) => (
+                    <li key={j} style={{ display: "flex", gap: 12, marginBottom: 14, fontSize: 14, color: "#081420", lineHeight: 1.4 }}>
+                      <span style={{ color: "#1D9E75", flexShrink: 0 }}><CheckIcon /></span> {feat}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#contact" className="da-btn-primary" style={{ marginTop: "auto", width: "100%", padding: "14px", textAlign: "center", borderRadius: 12, background: plan.popular ? "#185FA5" : "#6366F1", border: "none", color: "#fff", fontWeight: 700 }}>{plan.cta}</a>
+              </div>
+            ))}
+          </div>
+
+           {/* ➕ Strategic Add-ons */}
+           <div style={{ marginTop: 80 }}>
+              <div style={{ textAlign: "center", marginBottom: 48 }}>
+                <h4 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8 }}>Strategic Architecture</h4>
+                <div style={{ fontSize: 24, fontWeight: 700, color: "#081420" }}>High-Performance Add-ons</div>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 24 }}>
+                 {siteContent.pricing.addons.map((addon, i) => (
+                   <div key={i} style={{ 
+                     background: "#fff", 
+                     padding: "32px", 
+                     borderRadius: 24, 
+                     border: "1px solid rgba(24, 95, 165, 0.08)",
+                     boxShadow: "0 10px 40px rgba(0,0,0,0.02)",
+                     display: "flex", 
+                     flexDirection: "column",
+                     gap: 16,
+                     transition: "transform 0.3s ease",
+                     cursor: "pointer"
+                   }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-6px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>
+                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                        <div style={{ width: 40, height: 40, borderRadius: 12, background: "#f0f7ff", display: "grid", placeItems: "center", fontSize: 20 }}>
+                          {i === 0 ? "✍️" : i === 1 ? "🎨" : "⚡"}
+                        </div>
+                        <div style={{ fontSize: 18, fontWeight: 800, color: "#185FA5" }}>{isUSD ? addon.usd : addon.inr}</div>
+                     </div>
+                     <div>
+                        <div style={{ fontSize: 17, fontWeight: 800, color: "#081420", marginBottom: 4 }}>{addon.name}</div>
+                        <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>Studio Grade Execution</div>
+                     </div>
+                   </div>
+                 ))}
+              </div>
+           </div>
+
+           {/* ❓ Strategic Architecture FAQ */}
+          <div style={{ marginTop: 120, maxWidth: 900, marginInline: "auto" }}>
+             <div style={{ textAlign: "center", marginBottom: 60 }}>
+                <h4 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Technical Clarity</h4>
+                <h3 style={{ fontSize: isMobile ? 28 : 36, fontWeight: 700, color: "#081420" }}>Common Strategic Questions</h3>
+             </div>
+             
+             <div style={{ display: "grid", gap: 20 }}>
+                {siteContent.pricing.faq.map((item, i) => (
+                  <div key={i} style={{ 
+                    padding: isMobile ? "24px" : "32px 40px", 
+                    background: "#fff", 
+                    borderRadius: 24, 
+                    border: "1px solid rgba(24, 95, 165, 0.05)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.02)",
+                    display: "flex",
+                    gap: 24,
+                    alignItems: "flex-start",
+                    transition: "transform 0.3s ease"
+                  }}>
+                    <div style={{ 
+                      width: 40, 
+                      height: 40, 
+                      borderRadius: 12, 
+                      background: "#E6F1FB", 
+                      color: "#185FA5", 
+                      display: "grid", 
+                      placeItems: "center", 
+                      fontSize: 18, 
+                      fontWeight: 800,
+                      flexShrink: 0 
+                    }}>
+                      ?
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: 18, marginBottom: 12, color: "#081420", lineHeight: 1.4 }}>{item.q}</div>
+                      <div style={{ fontSize: 16, color: "#5d6570", lineHeight: 1.7, fontWeight: 400 }}>{item.a}</div>
+                    </div>
+                  </div>
+                ))}
+             </div>
+
+             <div style={{ textAlign: "center", marginTop: 48 }}>
+                <p style={{ fontSize: 14, color: "#94a3b8", fontWeight: 600 }}>Have a more specific technical question? <a href="#contact" style={{ color: "#185FA5", textDecoration: "none", borderBottom: "1px solid #185FA5" }}>Ask the Architect directly.</a></p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ⭐ Client Trust Architecture */}
+      <section style={{ padding: "120px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 80 }}>
+            <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Social Proof</h2>
+            <h3 style={{ fontSize: isMobile ? 32 : 48, fontWeight: 700, color: "#081420", letterSpacing: "-0.03em" }}>Verified Client Outcomes</h3>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: 40 }}>
+            {siteContent.testimonials.map((testi, i) => (
+              <div key={i} style={{ 
+                padding: "48px", 
+                background: "#f8fbff", 
+                borderRadius: 40, 
+                border: "1px solid rgba(24, 95, 165, 0.05)",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "0 20px 50px rgba(24, 95, 165, 0.03)"
+              }}>
+                <div style={{ position: "absolute", top: 40, right: 40, opacity: 0.1 }}>
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#185FA5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H5c-1.25 0-2 .75-2 2v3c0 1.25.75 2 2 2h3c0 4-4 4-4 4M13 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-3c-1.25 0-2 .75-2 2v3c0 1.25.75 2 2 2h3c0 4-4 4-4 4"></path></svg>
+                </div>
+                
+                <div style={{ display: "flex", gap: 4, marginBottom: 32 }}>
+                   {[...Array(testi.stars)].map((_, j) => (
+                     <svg key={j} width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                   ))}
+                </div>
+                
+                <p style={{ fontSize: 18, lineHeight: 1.8, color: "#1e293b", marginBottom: 40, fontWeight: 500, fontStyle: "italic" }}>
+                   "{testi.quote}"
+                </p>
+                
+                <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 20 }}>
+                  <div style={{ width: 60, height: 60, borderRadius: 20, background: "#fff", border: "1px solid #e2e8f0", display: "grid", placeItems: "center", fontSize: 24, fontWeight: 800, color: "#185FA5", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
+                    {testi.author[0]}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 18, fontWeight: 800, color: "#081420", marginBottom: 4 }}>{testi.author}</div>
+                    <div style={{ fontSize: 13, color: "#64748b", fontWeight: 600 }}>{testi.role} · <span style={{ color: "#185FA5" }}>{testi.location}</span></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 📧 Contact / Strategy Section */}
+      <section id="contact" style={{ padding: "100px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr", gap: 80 }}>
+            <div>
+              <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Inquiry</h2>
+              <h3 style={{ fontSize: 40, fontWeight: 700, color: "#081420", marginBottom: 32 }}>Ready to build your website?</h3>
+              <p style={{ fontSize: 18, color: "#5d6570", lineHeight: 1.6, marginBottom: 48 }}>
+                Let's talk about your project. Free consultation, no commitment required. I'll get back to you within 24 hours.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                   <div style={{ width: 56, height: 56, borderRadius: 16, background: "#E1F5EE", display: "grid", placeItems: "center" }}>
+                     <WhatsAppIcon />
+                   </div>
+                   <div>
+                     <div style={{ fontSize: 12, fontWeight: 700, color: "#5d6570", textTransform: "uppercase" }}>WhatsApp / Call</div>
+                     <div style={{ fontSize: 18, fontWeight: 700 }}>{siteContent.contact.phoneDisplay}</div>
+                   </div>
+                </div>
+                <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                   <div style={{ width: 56, height: 56, borderRadius: 16, background: "#E6F1FB", display: "grid", placeItems: "center" }}>
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                   </div>
+                   <div>
+                     <div style={{ fontSize: 12, fontWeight: 700, color: "#5d6570", textTransform: "uppercase" }}>Email Address</div>
+                     <div style={{ fontSize: 18, fontWeight: 700 }}>{siteContent.contact.email}</div>
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div style={{ background: "#f8fbff", padding: isMobile ? "32px" : "48px", borderRadius: 32, border: "1px solid rgba(0,0,0,0.03)" }}>
+              <form onSubmit={handleFormSubmit} style={{ display: "grid", gap: 24 }}>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16 }}>
+                   <label style={{ display: "block" }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "#081420", display: "block", marginBottom: 8 }}>NAME *</span>
+                      <input type="text" name="name" required style={{ width: "100%", padding: "14px", borderRadius: 12, border: "1px solid #e2e8f0" }} placeholder="Raj Kumar" />
+                   </label>
+                   <label style={{ display: "block" }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "#081420", display: "block", marginBottom: 8 }}>PHONE *</span>
+                      <input type="tel" name="phone" required style={{ width: "100%", padding: "14px", borderRadius: 12, border: "1px solid #e2e8f0" }} placeholder="+91 98765 43210" />
+                   </label>
+                </div>
+                <label style={{ display: "block" }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#081420", display: "block", marginBottom: 12 }}>SERVICES NEEDED</span>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                    {siteContent.services.items.map((svc, i) => (
+                      <label key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, cursor: "pointer" }}>
+                        <input type="checkbox" name="services" value={svc.title} /> {svc.title}
+                      </label>
+                    ))}
+                  </div>
+                </label>
+                <label style={{ display: "block" }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#081420", display: "block", marginBottom: 8 }}>PROJECT DETAILS</span>
+                  <textarea name="message" style={{ width: "100%", padding: "14px", borderRadius: 12, border: "1px solid #e2e8f0", minHeight: 80 }} placeholder="Tell me about your business and goals..."></textarea>
+                </label>
+                <button type="submit" className="da-btn-primary" style={{ padding: "18px", borderRadius: 12, background: "#185FA5", display: "flex", justifyContent: "center", alignItems: "center", gap: 10 }}>
+                  SEND STRATEGY REQUEST <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 🏛️ Footer */}
+      <footer style={{ padding: "80px 24px 40px", background: "#fff", borderTop: "1px solid rgba(0,0,0,0.05)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 32, marginBottom: 40 }}>
+            <div>
+               <div style={{ fontSize: 24, fontWeight: 800, marginBottom: 12 }}>RK<span style={{ color: "#185FA5" }}>WS</span></div>
+               <p style={{ color: "#5d6570", fontSize: 14 }}>{siteContent.contact.tagline}</p>
+            </div>
+            <div style={{ display: "flex", gap: 24 }}>
+               {siteContent.footer.links.map((link, i) => (
+                 <a key={i} href={link.href} style={{ fontSize: 14, color: "#5d6570", fontWeight: 600 }}>{link.label}</a>
+               ))}
+            </div>
+          </div>
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.05)", paddingTop: 40, display: "flex", justifyContent: "space-between", color: "#94a3b8", fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}>
+             <span>{siteContent.footer.copy}</span>
+             <span>BUILT BY RKWS DIGITAL</span>
           </div>
         </div>
       </footer>
