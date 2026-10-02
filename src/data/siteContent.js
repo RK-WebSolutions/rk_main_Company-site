@@ -1,6 +1,6 @@
 const siteContent = {
-  brandName: "RKWS",
-  tagline: "Websites that grow your business — not just look good",
+  brandName: "RKWS Studio",
+  tagline: "High-Performance Web Platforms & Autonomous AI Systems",
   
   navItems: [
     { label: "Services", href: "#services" },
@@ -11,78 +11,80 @@ const siteContent = {
   ],
 
   hero: {
-    badge: "Solo Architect · Multi-Million Impact · Based in Coimbatore",
-    heading: "Building digital structures that <span class='accent'>scale your legacy</span>",
-    subheading: "I help ambitious businesses in Coimbatore & globally transition from 'just a website' to an automated growth engine. No templates. No agencies. Just high-performance digital architecture.",
-    primaryCTA: "BOOK ARCHITECT",
-    secondaryCTA: "VIEW WORK",
+    badge: "Solo Engineering Studio · Autonomous Systems · Based in Coimbatore",
+    heading: "Engineering digital engines that <span class='accent'>scale revenue & legacy</span>",
+    subheading: "We architect high-performance web platforms, autonomous AI workflows, and resilient cloud infrastructure for ambitious businesses. No bloated agency retainers. Zero template lock-in. Just raw engineering velocity.",
+    primaryCTA: "LAUNCH PROJECT",
+    secondaryCTA: "EXPLORE BUILDS",
     whatsappText: "Chat on WhatsApp",
     image: "/assets/images/hero.png"
   },
 
   results: [
-    { value: "50+", label: "Projects delivered" },
-    { value: "5+", label: "Years experience" },
-    { value: "100%", label: "Client satisfaction" }
+    { value: "100%", label: "Sub-Second Global Edge Delivery" },
+    { value: "24/7", label: "Autonomous Daemon Uptime" },
+    { value: "0%", label: "Template Lock-In" }
   ],
 
   services: {
-    heading: "Services",
+    heading: "Services & Capabilities",
     items: [
       {
-        title: "Web design",
-        description: "Clean, modern websites designed to impress visitors and turn them into paying customers. Every design is custom — no templates.",
-        icon: "🎨"
+        title: "High-Performance Web Apps",
+        description: "Bespoke React 19 and Next.js 15 platforms engineered for sub-500ms load times, crisp micro-interactions, and conversion-focused architecture.",
+        icon: "⚡"
       },
       {
-        title: "WordPress development",
-        description: "Powerful WordPress websites you can manage yourself. Fast loading, SEO-ready, and built to handle real business traffic.",
+        title: "Autonomous AI & Bot Sentinels",
+        description: "24/7 autonomous intelligent agents for Telegram & WhatsApp, dynamic lead capture, real-time audio STT/TTS synthesis, and LLM automation.",
+        icon: "🤖"
+      },
+      {
+        title: "Dynamic Payments & E-Commerce",
+        description: "Direct zero-fee UPI payment rails with dynamic QR generation, instant automated invoicing, and WooCommerce/Shopify scale engines.",
+        icon: "💳"
+      },
+      {
+        title: "Cloud Edge & API Infrastructure",
+        description: "Resilient FastAPI backends, Cloudflare Tunnels, Supabase/PostgreSQL databases, and zero-downtime Linux server deployments.",
         icon: "🌐"
-      },
-      {
-        title: "E-commerce",
-        description: "WooCommerce and Shopify stores built to sell. From product pages to checkout, I make sure your customers have zero friction.",
-        icon: "🛒"
-      },
-      {
-        title: "SEO & digital marketing",
-        description: "Get found on Google by customers who are already looking for what you offer. I handle on-page SEO and speed optimisation.",
-        icon: "🔍"
       }
     ]
   },
 
   showcase: [
     {
-      title: "Titan Forge",
+      title: "DOT-JV (J.A.R.V.I.S. Autonomous OS)",
+      location: "Live Cloudflare Deployment",
+      category: "Autonomous Systems",
+      description: "24/7 autonomous Arch Linux operating system. Features two-way neural voice loop, sub-2ms SQLite FTS5 brain, hardware watchdog, and global WebHUD.",
+      image: "/assets/images/portfolio_dot_jv.png",
+      link: "https://jv.rkws.in",
+    },
+    {
+      title: "Titan Forge Fitness",
       location: "Coimbatore",
-      category: "Fitness/Gym",
-      description: "Custom membership engine · Personal trainer booking system · +45% conversion. High-performance platform for elite athletes.",
+      category: "Web Engine",
+      description: "Custom membership engine · Automated trainer scheduling · Sub-500ms edge load time. High-performance platform for elite athletes.",
       image: "/assets/images/portfolio_gym.png",
-      link: "https://demo.rkws.in",
+      link: "https://github.com/RK-WebSolutions/gym",
     },
     {
-      title: "MediCare Clinic",
-      location: "Chennai",
-      category: "Medical Clinic",
-      description: "Patient appointment engine · HIPAA compliant workflow · -30% no-shows. Optimized for trust and medical authority.",
+      title: "PharmaForecast AI",
+      location: "Enterprise Cloud",
+      category: "AI & Analytics",
+      description: "Pharmaceutical demand forecasting & stockout mitigation engine. Dual CatBoost/LightGBM time-series regression with automated ROP inventory logic.",
       image: "/assets/images/portfolio_clinic.png",
-    },
-    {
-      title: "Vogue Emporium",
-      location: "Worldwide",
-      category: "E-commerce Store",
-      description: "WooCommerce scale engine · Mobile-first shopping · 1500+ SKU support. Engineered for high-volume fashion retail.",
-      image: "/assets/images/portfolio_ecommerce.png",
+      link: "https://github.com/Ramani-21-05/shall-we-start",
     },
   ],
 
   founder: {
-    name: "RK",
-    intro: "Hi, I'm RK",
-    mission: "Small businesses deserve great websites without paying agency prices or dealing with poor communication.",
-    bio: "Based in Coimbatore, India. I build technical assets for business owners who are tired of basic websites that don't convert. My focus is on technical honesty, premium aesthetics, and measurable ROI.",
-    skills: ["WordPress", "React", "PHP", "WooCommerce", "SEO", "Figma", "Shopify"],
+    name: "Ramani Krishnan (RK)",
+    intro: "Hi, I'm Ramani",
+    mission: "High-growth businesses deserve bleeding-edge technical assets without bloated agency markups or slow communication.",
+    bio: "Based in Coimbatore, India. I specialize in systems engineering, high-concurrency web platforms, and autonomous AI agents. I deliver end-to-end technical execution: from database architecture and API backends to crisp frontend interactions and automated cloud deployment.",
+    skills: ["React / Next.js", "Python / FastAPI", "Autonomous AI Agents", "Linux & Cloudflare", "TypeScript", "Dynamic UPI Rails", "PostgreSQL / Supabase"],
     cta: "Let's talk — it's free",
     image: "/assets/rk_photo.jpeg"
   },
@@ -150,20 +152,20 @@ const siteContent = {
     posts: [
       {
         id: 1,
-        title: "Do I Really Need a Website If I Already Have Instagram and JustDial? (The Truth in 2025)",
+        title: "Do I Really Need a Website If I Already Have Instagram and JustDial? (The Truth in 2026)",
         category: "Strategy",
-        date: "May 2025",
+        date: "May 2026",
         readTime: "12 min read",
         image: "/assets/images/blog_1.png",
-        excerpt: "Most Indian small business owners rely only on Instagram and JustDial. Here's why this strategy is quietly killing your growth in 2025 and why a website is now non-negotiable.",
+        excerpt: "Most Indian small business owners rely only on Instagram and JustDial. Here's why this strategy is quietly killing your growth in 2026 and why a website is now non-negotiable.",
         featured: true,
-        content: `### Do I Really Need a Website If I Already Have Instagram and JustDial? (The Truth in 2025)
+        content: `### Do I Really Need a Website If I Already Have Instagram and JustDial? (The Truth in 2026)
 
 As a small business owner in India, you've probably asked yourself this question many times: "I already have 8k followers on Instagram and a good JustDial listing. Do I really need to spend money on a website?"
 
 The short answer is **yes**. And the longer answer is going to hurt a little.
 
-In 2025, depending only on rented platforms like Instagram and JustDial is one of the biggest mistakes Indian small businesses are making — and most don't realize it until it's too late.
+In 2026, depending only on rented platforms like Instagram and JustDial is one of the biggest mistakes Indian small businesses are making — and most don't realize it until it's too late.
 
 Let me explain exactly why.
 
@@ -275,13 +277,13 @@ A properly built website will easily pay for itself within 2–4 months through 
 
 ### 7. Conclusion: Instagram and JustDial Should Support Your Business, Not BE Your Business
 
-Your website should be the hero. Instagram and JustDial should be the supporting actors. In 2025, a website is no longer a luxury for big companies. It is the **foundation of a serious small business in India.**`
+Your website should be the hero. Instagram and JustDial should be the supporting actors. In 2026, a website is no longer a luxury for big companies. It is the **foundation of a serious small business in India.**`
       },
       {
         id: 2,
         title: "How Much Does a Website Cost in India in 2025? The Honest Breakdown",
         category: "Economics",
-        date: "May 2025",
+        date: "May 2026",
         readTime: "10 min read",
         image: "/assets/images/blog_2.png",
         excerpt: "Exact pricing guide for website development in India in 2025. Detailed cost breakdown from ₹12,000 up to ₹5 lakhs.",
@@ -351,7 +353,7 @@ A ₹50,000 website that brings you 4–5 quality leads per month is worth ₹6 
         id: 3,
         title: "Why Your Website is Not Showing on Google in 2025 (and How to Fix It Fast)",
         category: "SEO",
-        date: "May 2025",
+        date: "May 2026",
         readTime: "14 min read",
         image: "/assets/images/blog_3.png",
         excerpt: "Is your website not appearing on Google searches in India? Discover the 6 most common reasons and get the exact fixes.",
@@ -543,7 +545,7 @@ A redesign is not an expense—it's an investment. Moving from a lead-conversion
     heading: "Strategic Content Roadmap",
     months: [
       {
-        name: "Month 1 — May 2025",
+        name: "Month 1 — May 2026",
         topic: "Rented vs Owned Platforms",
         post: "Do I really need a website if I already have Instagram and JustDial?",
         keywords: ["website vs Instagram", "JustDial vs website", "India small business"]
