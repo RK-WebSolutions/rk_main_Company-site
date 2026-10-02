@@ -4,10 +4,12 @@ const siteContent = {
   
   navItems: [
     { label: "Services", href: "#services" },
+    { label: "Live Console", href: "#console" },
     { label: "Our Work", href: "#work" },
-    { label: "Blog", href: "/blog" },
+    { label: "Open Source", href: "#opensource" },
+    { label: "Calculator & Pricing", href: "#pricing" },
     { label: "About", href: "#founder" },
-    { label: "Pricing", href: "#pricing" }
+    { label: "Blog", href: "/blog" }
   ],
 
   hero: {

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import siteContent from "../../data/siteContent.js";
+import ProjectCalculator from "./ProjectCalculator.jsx";
+import WebHudTerminal from "./WebHudTerminal.jsx";
+import OpenSourceShowcase from "./OpenSourceShowcase.jsx";
+
 
 const CheckIcon = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="3 7 6 10 11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -156,6 +160,21 @@ export default function ReferenceSite() {
         </div>
       </section>
 
+      {/* 🖥️ Live Telemetry & Console */}
+      <section id="console" style={{ padding: "100px 24px", background: "#060b13" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, color: "#38bdf8", textTransform: "uppercase", letterSpacing: "0.2em", display: "block", marginBottom: 8 }}>
+              Live Telemetry Stream
+            </span>
+            <h3 style={{ fontSize: isMobile ? 26 : 38, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>
+              DOT-JV Node Console & Architecture Sandbox
+            </h3>
+          </div>
+          <WebHudTerminal isMobile={isMobile} />
+        </div>
+      </section>
+
       {/* 🧱 Portfolio */}
       <section id="work" style={{ padding: "120px 24px", background: "#fff" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -183,6 +202,13 @@ export default function ReferenceSite() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 🐙 Open-Source Showcase */}
+      <section id="opensource" style={{ padding: "100px 24px", background: "#f8fbff" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <OpenSourceShowcase isMobile={isMobile} />
         </div>
       </section>
 
@@ -220,6 +246,16 @@ export default function ReferenceSite() {
              <h2 style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16 }}>Pricing</h2>
              <h3 style={{ fontSize: 32, fontWeight: 700, color: "#081420", marginBottom: 24 }}>{siteContent.pricing.heading}</h3>
              
+             {/* 🧮 Interactive Scope & Cost Calculator */}
+             <div style={{ marginBottom: 64, textAlign: "left" }}>
+                <ProjectCalculator isMobile={isMobile} />
+             </div>
+
+             <div style={{ textAlign: "center", marginBottom: 32 }}>
+                <div style={{ fontSize: 13, fontWeight: 800, color: "#185FA5", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 8 }}>Fixed Retainer Tiers</div>
+                <div style={{ fontSize: 24, fontWeight: 700, color: "#081420" }}>Standard Architecture Packages</div>
+             </div>
+
              {/* 💱 Currency Toggle */}
              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 48 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: !isUSD ? "#185FA5" : "#5d6570" }}>₹ INR</span>
