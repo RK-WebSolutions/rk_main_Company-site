@@ -4,6 +4,7 @@ const siteContent = {
   
   navItems: [
     { label: "Services", href: "#services" },
+    { label: "Crypto 5X ⚡", href: "/crypto" },
     { label: "Live Console", href: "#console" },
     { label: "Our Work", href: "#work" },
     { label: "Open Source", href: "#opensource" },

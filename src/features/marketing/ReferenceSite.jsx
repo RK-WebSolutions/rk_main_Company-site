@@ -4,6 +4,7 @@ import siteContent from "../../data/siteContent.js";
 import ProjectCalculator from "./ProjectCalculator.jsx";
 import WebHudTerminal from "./WebHudTerminal.jsx";
 import OpenSourceShowcase from "./OpenSourceShowcase.jsx";
+import CryptoCockpit from "./CryptoCockpit.jsx";
 
 
 const CheckIcon = () => (
@@ -172,6 +173,24 @@ export default function ReferenceSite() {
             </h3>
           </div>
           <WebHudTerminal isMobile={isMobile} />
+        </div>
+      </section>
+
+      {/* ⚡ Live Binance 5x Crypto Cockpit */}
+      <section id="crypto" style={{ padding: "100px 24px", background: "#060b13" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <span style={{ fontSize: 11, fontWeight: 800, color: "#38bdf8", textTransform: "uppercase", letterSpacing: "0.2em", display: "block", marginBottom: 8 }}>
+              Live Quantitative OMS
+            </span>
+            <h3 style={{ fontSize: isMobile ? 26 : 38, fontWeight: 800, color: "#fff", letterSpacing: "-0.02em" }}>
+              Binance 5X Alpha Execution Sentinel
+            </h3>
+            <p style={{ color: "#94a3b8", fontSize: 14, maxWidth: 640, margin: "8px auto 0" }}>
+              Headless engine streaming real-time telemetry from Azure Standard_B1s node. Vol-parity risk across 40 tokens with 3-stage chandelier trailing stop.
+            </p>
+          </div>
+          <CryptoCockpit isEmbedded={true} isMobile={isMobile} />
         </div>
       </section>
 
