@@ -6,177 +6,115 @@ import {
   ExternalLink,
   Terminal,
   Sparkles,
-  Layers,
-  Cpu,
-  Eye,
   Zap,
   ArrowRight,
   CheckCircle2,
-  ChevronRight,
-  User,
-  Heart,
-  MessageSquare,
-  Flame,
   HelpCircle,
   Code2,
-  Globe,
-  Radio,
   Lock,
-  Clock,
-  Compass
+  Flame,
+  MessageCircle,
+  Mail,
+  Compass,
+  Smile,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import "../../styles/coming-soon.css";
 
-const FLAGSHIP_PROJECTS = [
+function GithubIcon({ className = "w-4 h-4" }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
+  );
+}
+
+
+const HUMAN_PROJECTS = [
   {
     id: "browser-mirror",
     name: "BrowserMirror",
     subdomain: "mirror.rkws.in",
     url: "https://mirror.rkws.in",
-    tag: "Online Privacy & Hardware Profiling",
-    accent: "#38bdf8", // Cyan
-    accentDim: "rgba(56, 189, 248, 0.15)",
-    hook: "Think 'Incognito Mode' hides who you are? Think again.",
-    simpleSummary:
-      "Every website you visit can identify your exact device in milliseconds without using cookies, logins, or your name. BrowserMirror reveals your invisible hardware fingerprint and provides actionable tools to defend your privacy.",
-    eli5:
-      "Just like a fingerprint on a glass, your computer has a unique 'handwriting' based on how its screen, graphics card, and audio chip render graphics. Websites track you across the internet using this signature even if you clear cookies or use Incognito mode.",
-    techSpecs: [
-      "63.68 bits Shannon Entropy Engine with 1 in 68.7 Billion global rarity",
-      "WebGL unmasked GPU renderer & floating-point shader precision probing",
-      "Canvas 2D sub-pixel anti-aliasing & winding rule geometry measurement",
-      "AudioContext offline oscillator buffer SHA-256 acoustic synthesis",
-      "100% Client-Side Privacy: zero telemetry sent to servers, 0 latency"
-    ],
-    badgeText: "1 in 68.7B Rarity Probed",
-    status: "Live on Cloudflare Edge",
-    cta: "Audit My Browser Privacy",
+    category: "Online Privacy",
+    color: "#38bdf8", // Sky blue
     icon: Shield,
+    headline: "Can websites secretly track your phone or laptop?",
+    plainEnglish:
+      "Ever notice how ads follow you around the internet even when you use Incognito mode? This tool shows you the invisible digital 'fingerprint' your device gives away in milliseconds — and how to protect yourself.",
+    analogy:
+      "Just like passport control recognizes your face, websites recognize your device by how it draws shapes and plays audio behind the scenes. 100% private: runs completely in your browser, nothing is saved.",
+    simpleAction: "Check My Device Privacy ➔",
+    techSummary: "64.3 bits Shannon entropy, WebGL GPU unmasking, Canvas 2D sub-pixel metrics, and AudioContext SHA-256 acoustic synthesis.",
+    status: "Free • 2-Sec Scan",
   },
   {
     id: "system-sim",
     name: "SystemSim",
     subdomain: "sim.rkws.in",
     url: "https://sim.rkws.in",
-    tag: "Distributed Systems & Physics Simulator",
-    accent: "#10b981", // Emerald
-    accentDim: "rgba(16, 185, 129, 0.15)",
-    hook: "Ever wondered why IRCTC Tatkal or Ticketmaster crash at 10:00 AM?",
-    simpleSummary:
-      "SimCity for the internet. An interactive 60 FPS physics sandbox where thousands of requests flow like water through servers, databases, and caches. Trigger chaotic traffic surges to watch servers overheat and collapse before your eyes.",
-    eli5:
-      "Think of servers like cashiers at a supermarket. When 100,000 shoppers rush 4 cashiers at once, lines back up out the door (yellow), cashiers overheat (🔥), and customers get turned away (red). SystemSim lets you stress-test and watch the meltdown in real time.",
-    techSpecs: [
-      "60 FPS HTML5 Canvas particle physics with cubic Bézier conduit curves",
-      "Little's Law queuing theory equilibrium (L = λW) across worker pools",
-      "M/M/c multi-server finite queue simulation & exponential service times",
-      "Interactive Disaster Scenarios: Ticketmaster Meltdown & Cache Stampede",
-      "Thermal load modeling with real-time 504 Gateway Timeout shedding"
-    ],
-    badgeText: "60 FPS Interactive Physics",
-    status: "Live on Cloudflare Edge",
-    cta: "Stress-Test Live Systems",
+    category: "Interactive Playground",
+    color: "#10b981", // Emerald green
     icon: Activity,
+    headline: "Why do ticket websites always crash when you need them?",
+    plainEnglish:
+      "Ever try booking Tatkal train tickets or concert tickets at 10 AM only for the site to freeze? This is an interactive physics game where you can watch traffic flow like water — and hit a button to crash the servers yourself.",
+    analogy:
+      "Think of servers like cashiers at a supermarket. When 100,000 shoppers rush 4 cashiers at once, lines explode out the door (yellow) and frustrated people leave (red). You get to test and watch the meltdown live.",
+    simpleAction: "Try to Crash the Website ➔",
+    techSummary: "60 FPS HTML5 Canvas particle physics, Little's Law queues (L = λW), M/M/c worker pools, and thermal load modeling.",
+    status: "Interactive 60 FPS",
   },
   {
     id: "real-worth",
     name: "RealWorth",
     subdomain: "worth.rkws.in",
     url: "https://worth.rkws.in",
-    tag: "Compensation & True Wealth Engine",
-    accent: "#f59e0b", // Amber
-    accentDim: "rgba(245, 158, 11, 0.15)",
-    hook: "Why an ₹18 LPA Bangalore offer gives you LESS pocket money than ₹10 LPA in your hometown.",
-    simpleSummary:
-      "Most salary calculators only show basic income tax. RealWorth calculates what you actually keep after Indian FY 2026-27 tax slabs, metro rents, 6-month security deposit locks, and 500 hours wasted in traffic.",
-    eli5:
-      "A big salary on paper can be an optical illusion. When ₹40,000/month goes to rent, ₹2 Lakhs is locked in landlord deposits, and you lose 2 hours daily sitting in traffic, your actual 'Hourly Freedom Wage' drops by more than 50%.",
-    techSpecs: [
-      "Statutory FY 2026-27 Section 115BAC Slabs & Section 87A rebate rules",
-      "Standard ₹75,000 deduction, 4% Health/Education cess, and surcharge",
-      "Metro Opportunity Cost & Commute Depreciation deflator matrix",
-      "Side-by-Side Offer Match Simulation with instant infographic export",
-      "100% Client-Side execution with zero tracking or financial data storage"
-    ],
-    badgeText: "FY 2026-27 Statutory Slabs",
-    status: "Live on Cloudflare Edge",
-    cta: "Calculate True Take-Home",
+    category: "Salary & Life Calculator",
+    color: "#f59e0b", // Warm gold
     icon: DollarSign,
+    headline: "Is that big Bangalore salary actually worth the move?",
+    plainEnglish:
+      "A ₹15 Lakhs or ₹18 Lakhs offer sounds huge on LinkedIn. But once you subtract new income tax, crazy metro rents, ₹2 Lakhs locked in landlord deposits, and 2 hours wasted in daily traffic, how much real money do you actually save?",
+    analogy:
+      "Nominal CTC is vanity. A ₹10 Lakhs remote job in your hometown often leaves you with MORE savings in your pocket and 40 extra hours of free life every single month.",
+    simpleAction: "Calculate Your Real Savings ➔",
+    techSummary: "Statutory Indian FY 2026-27 S.115BAC new tax slabs, Bangalore/Gurgaon rent deflators, and lost commute hours calculator.",
+    status: "FY 2026-27 Slabs",
   },
 ];
 
-const OTHER_SUBDOMAINS = [
+const OTHER_TOOLS = [
   {
     name: "demo.rkws.in",
-    desc: "Interactive client prototypes, sandbox simulations, and live interface demos.",
-    status: "Active Deployment",
-    state: "live",
+    desc: "Interactive client prototypes and custom design sandboxes.",
     url: "https://demo.rkws.in",
+    status: "Live",
   },
   {
     name: "preview.rkws.in",
-    desc: "Staging sandbox for upcoming customer deliverables and feature experiments.",
-    status: "Staging Pipeline",
-    state: "live",
+    desc: "Staging sandbox for upcoming customer deliverables.",
     url: "https://preview.rkws.in",
+    status: "Live",
   },
   {
     name: "alpha.rkws.in",
-    desc: "Autonomous agent execution nodes, quant backtest telemetry, and deep-tech logs.",
-    status: "Private Node",
-    state: "incubating",
+    desc: "Autonomous trading engines and quant telemetry nodes.",
     url: "https://alpha.rkws.in",
+    status: "Private",
   },
-  {
-    name: "api.rkws.in",
-    desc: "Low-latency edge routing, webhook collectors, and background telemetry APIs.",
-    status: "Edge Worker",
-    state: "live",
-    url: "https://api.rkws.in",
-  },
-];
-
-const DEV_THOUGHTS = [
-  {
-    time: "14:15 IST",
-    text: "Production verification: All 3 flagship subdomains (mirror, sim, worth) routing 200 OK via Cloudflare Edge with automated SSL.",
-  },
-  {
-    time: "13:50 IST",
-    text: "Human-centric design: Complex distributed systems and cryptography should be immediately understandable to anyone who sees them.",
-  },
-  {
-    time: "11:20 IST",
-    text: "Architectural note: Keeping rkws.in pure and uncluttered. If a tool needs to go live today, it belongs on an edge sub-site.",
-  },
-  {
-    time: "08:15 IST",
-    text: "Fedora Linux workstation running stable at 48°C. Algorithmic quant engines and live data pipelines operating on local nodes.",
-  },
-  {
-    time: "06:30 IST",
-    text: "Rule of simplicity: Zero unnecessary dependencies. The fastest code is the code you didn't have to load.",
-  },
-];
-
-const NUDGE_RESPONSES = [
-  "Dev: 'Felt that! Switching back from Hacker News to Neovim.'",
-  "Dev: 'Hold on, just fixing a race condition in the backtester.'",
-  "Dev: 'Cup #3 of coffee brewed. Lines of code refactored: 142.'",
-  "Dev: 'All 3 subdomains are live! Mirror, Sim, and Worth are running.'",
-  "Dev: 'No generic AI-sludge templates here. Handcrafted systems only.'",
-  "Dev: 'Ping received loud and clear. Great things take time.'",
 ];
 
 export default function ComingSoon() {
-  const [viewMode, setViewMode] = useState("simple"); // "simple" | "tech"
-  const [activeTab, setActiveTab] = useState("products"); // "products" | "thoughts" | "terminal" | "subdomains"
+  const [showTechDetails, setShowTechDetails] = useState(false);
+  const [activeTab, setActiveTab] = useState("tools"); // "tools" | "about" | "terminal"
   const [currentTime, setCurrentTime] = useState("");
   const [nudgeCount, setNudgeCount] = useState(() => {
     try {
-      return parseInt(localStorage.getItem("rkws_nudges") || "32", 10);
+      return parseInt(localStorage.getItem("rkws_nudges") || "42", 10);
     } catch {
-      return 32;
+      return 42;
     }
   });
   const [toastMessage, setToastMessage] = useState(null);
@@ -184,9 +122,9 @@ export default function ComingSoon() {
   // Terminal state
   const [cmdInput, setCmdInput] = useState("");
   const [termLines, setTermLines] = useState([
-    { type: "out", text: "rkws-shell v2.1.0 (x86_64-pc-linux-gnu)" },
-    { type: "out", text: "Cloudflare Edge Mesh: 3 Flagship Subdomains Active (mirror, sim, worth)." },
-    { type: "out", text: "Type 'help' to inspect available system commands." },
+    { type: "out", text: "Welcome to rkws-shell v2.2.0" },
+    { type: "out", text: "All 3 flagship tools are live: mirror.rkws.in, sim.rkws.in, worth.rkws.in" },
+    { type: "out", text: "Type 'help' for available commands." },
   ]);
   const termEndRef = useRef(null);
 
@@ -209,13 +147,6 @@ export default function ComingSoon() {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-scroll terminal
-  useEffect(() => {
-    if (activeTab === "terminal" && termEndRef.current) {
-      termEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [termLines, activeTab]);
-
   const handleNudge = () => {
     const newCount = nudgeCount + 1;
     setNudgeCount(newCount);
@@ -223,13 +154,18 @@ export default function ComingSoon() {
       localStorage.setItem("rkws_nudges", newCount.toString());
     } catch {}
 
-    const randomMsg =
-      NUDGE_RESPONSES[Math.floor(Math.random() * NUDGE_RESPONSES.length)];
+    const responses = [
+      "Thanks for checking in! Ramani is at his desk coding.",
+      "Vibration sent to desk! Lines of clean code being written.",
+      "Coffee brewed! Systems running at full speed.",
+      "Hello! Hope you enjoyed testing the tools.",
+    ];
+    const randomMsg = responses[Math.floor(Math.random() * responses.length)];
     setToastMessage(randomMsg);
 
     setTimeout(() => {
       setToastMessage((prev) => (prev === randomMsg ? null : prev));
-    }, 4000);
+    }, 3500);
   };
 
   const handleCommand = (e) => {
@@ -243,48 +179,34 @@ export default function ComingSoon() {
     if (lower === "help") {
       newHistory.push({
         type: "out",
-        text: "Available commands:\n  • apps        - Launch the 3 flagship live engines\n  • status      - Query Cloudflare Edge & node status\n  • whoami      - View developer identity & credentials\n  • coffee      - Inject virtual caffeine into the dev\n  • nudge       - Poke the developer\n  • clear       - Clear terminal window\n  • github      - Open GitHub profile",
+        text: "Commands:\n  • tools       - Open all live tools\n  • whoami      - About the developer\n  • status      - Check site health\n  • nudge       - Say hi to the developer\n  • clear       - Clear the screen",
       });
-    } else if (lower === "apps" || lower === "subdomains") {
+    } else if (lower === "tools" || lower === "apps") {
       newHistory.push({
         type: "out",
-        text: "Active Production Engines:\n  → mirror.rkws.in  (Browser Fingerprint Auditor & Defense Shield)\n  → sim.rkws.in     (60 FPS Distributed Systems Physics Playground)\n  → worth.rkws.in   (Statutory FY 2026-27 Real Purchasing Power Deflator)",
-      });
-    } else if (lower === "status") {
-      newHistory.push({
-        type: "out",
-        text: "STATUS: 200 OK | Edge Network: Cloudflare Pages | SSL: Automated Active | Mesh: 3 Engines Operational",
+        text: "Live Tools:\n  1. mirror.rkws.in ➔ Privacy & Fingerprint Test\n  2. sim.rkws.in    ➔ Server Crash & Traffic Simulator\n  3. worth.rkws.in  ➔ Real Take-Home Salary Calculator",
       });
     } else if (lower === "whoami") {
       newHistory.push({
         type: "out",
-        text: "Ramani Krishnan — Systems & Quantitative Engineer.\nCrafting high-throughput financial engines, distributed agents, and clean software.",
+        text: "Ramani Krishnan — Final-year AI & Data Science student in Coimbatore, India.\nBuilding high-performance trading software, systems, and clean web tools.",
       });
-    } else if (lower === "coffee") {
+    } else if (lower === "status") {
       newHistory.push({
         type: "out",
-        text: "☕ Espresso delivered! Brain clock speed boosted by +25%.",
+        text: "All systems healthy • Hosted on Cloudflare Edge • 0 tracking cookies",
       });
     } else if (lower === "nudge") {
       handleNudge();
-      newHistory.push({
-        type: "out",
-        text: "⚡ Developer poked! Vibration sent to desk.",
-      });
+      newHistory.push({ type: "out", text: "⚡ Poked the developer!" });
     } else if (lower === "clear") {
       setTermLines([]);
       setCmdInput("");
       return;
-    } else if (lower === "github") {
-      window.open("https://github.com/Ramani-21-05", "_blank");
-      newHistory.push({
-        type: "out",
-        text: "Opening https://github.com/Ramani-21-05 in new window...",
-      });
     } else {
       newHistory.push({
         type: "out",
-        text: `bash: command not found: '${trimmed}'. Type 'help' for guidance.`,
+        text: `Command not found: '${trimmed}'. Type 'help' for guidance.`,
       });
     }
 
@@ -294,158 +216,128 @@ export default function ComingSoon() {
 
   return (
     <div className="cs-universe">
-      {/* Top Bar / Header */}
+      {/* Top Header */}
       <header className="cs-header">
         <a href="/" className="cs-brand">
           <div className="cs-logo-symbol">rk</div>
           <div>
             <div className="cs-brand-text">rkws.in</div>
-            <div className="cs-brand-sub">studio & systems</div>
+            <div className="cs-brand-sub">by Ramani Krishnan</div>
           </div>
         </a>
 
         <div className="cs-header-center">
           <div className="cs-pulse-dot"></div>
-          <span>3 Flagship Engines Live on Cloudflare</span>
+          <span>3 Free Interactive Tools Live</span>
         </div>
 
         <div className="cs-header-right">
           <div className="cs-clock">
-            Coimbatore, IN <span>{currentTime || "14:30:00"} IST</span>
+            Coimbatore, IN <span>{currentTime || "14:50:00"} IST</span>
           </div>
         </div>
       </header>
 
       {/* Main Container */}
       <main className="cs-main">
-        {/* Hero Section */}
-        <div className="cs-hero-section">
+        {/* Friendly Hero */}
+        <section className="cs-hero-section">
           <div className="cs-hero-badge">
-            <Sparkles className="w-3.5 h-3.5" style={{ color: "var(--amber)" }} />
-            <span>DEEP SYSTEMS • ZERO JARGON • 100% PRIVATE</span>
+            <Sparkles className="w-4 h-4 text-amber" />
+            <span>NO ADS • NO TRACKING • 100% FREE</span>
           </div>
 
           <h1 className="cs-hero-title">
-            Engineered for Depth. <br />
-            <span className="highlight">Understood by Everyone.</span>
+            Simple tools that show you <br />
+            <span className="highlight">how tech actually works.</span>
           </h1>
 
           <p className="cs-hero-subtitle">
-            Welcome to the laboratory of <strong>Ramani Krishnan</strong>. Here, advanced cryptography, distributed systems, and financial realities are distilled into interactive, production-grade tools that <strong>anyone</strong> can explore.
+            I build clean, privacy-friendly tools to help you understand what websites see about you, why internet services crash, and what your job offer is really worth. No confusing jargon.
           </p>
 
-          {/* Mode Switcher */}
-          <div className="cs-view-toggle-container">
-            <span className="cs-toggle-label">Audience View:</span>
-            <div className="cs-view-toggle">
-              <button
-                className={`cs-toggle-btn ${viewMode === "simple" ? "active" : ""}`}
-                onClick={() => setViewMode("simple")}
-              >
-                <Eye className="w-4 h-4" />
-                <span>Explain for Everyone (Visual)</span>
-              </button>
-              <button
-                className={`cs-toggle-btn ${viewMode === "tech" ? "active" : ""}`}
-                onClick={() => setViewMode("tech")}
-              >
-                <Code2 className="w-4 h-4" />
-                <span>Deep Engineering Specs</span>
-              </button>
-            </div>
+          {/* Quick Toggle for Curious Geeks */}
+          <div className="cs-tech-toggle-bar">
+            <button
+              onClick={() => setShowTechDetails(!showTechDetails)}
+              className="cs-tech-toggle-btn"
+            >
+              <Code2 className="w-3.5 h-3.5 text-amber" />
+              <span>{showTechDetails ? "Hide technical details" : "Are you a developer? Click here for the tech specs"}</span>
+              {showTechDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
           </div>
-        </div>
+        </section>
 
-        {/* Flagship Products Grid */}
-        <div className="cs-products-grid">
-          {FLAGSHIP_PROJECTS.map((proj) => {
+        {/* 3 Flagship Cards (Big, Beautiful, Understandable) */}
+        <section className="cs-products-grid">
+          {HUMAN_PROJECTS.map((proj) => {
             const Icon = proj.icon;
             return (
               <div
                 key={proj.id}
-                className="cs-product-card"
-                style={{ "--card-accent": proj.accent }}
+                className="cs-human-card"
+                style={{ "--accent": proj.color }}
               >
-                {/* Card Top: Tag & Live Indicator */}
-                <div className="cs-card-top">
-                  <div className="cs-card-tag" style={{ color: proj.accent }}>
+                {/* Top Badge & Category */}
+                <div className="cs-human-top">
+                  <div className="cs-human-category" style={{ color: proj.color }}>
                     <Icon className="w-4 h-4" />
-                    <span>{proj.tag}</span>
+                    <span>{proj.category}</span>
                   </div>
-                  <div className="cs-card-live-badge">
-                    <span className="cs-live-pulse" style={{ backgroundColor: proj.accent }}></span>
-                    <span>{proj.status}</span>
-                  </div>
+                  <span className="cs-human-status-pill">{proj.status}</span>
                 </div>
 
-                {/* Card Title & Subdomain */}
-                <div className="cs-card-header">
-                  <h2 className="cs-card-title">{proj.name}</h2>
-                  <a
-                    href={proj.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="cs-card-domain"
-                  >
-                    <span>{proj.subdomain}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                {/* Big Question Headline */}
+                <h2 className="cs-human-headline">
+                  "{proj.headline}"
+                </h2>
 
-                {/* The Hook */}
-                <div className="cs-card-hook">
-                  "{proj.hook}"
-                </div>
+                {/* Plain English Explanation */}
+                <p className="cs-human-plain">
+                  {proj.plainEnglish}
+                </p>
 
-                {/* Dynamic Content: Simple vs Tech */}
-                {viewMode === "simple" ? (
-                  <div className="cs-card-body-simple">
-                    <p className="cs-simple-desc">{proj.simpleSummary}</p>
-                    <div className="cs-eli5-box">
-                      <div className="cs-eli5-header">
-                        <HelpCircle className="w-4 h-4" style={{ color: proj.accent }} />
-                        <strong>In Plain Words:</strong>
-                      </div>
-                      <p className="cs-eli5-text">{proj.eli5}</p>
-                    </div>
+                {/* The "In Plain Words" Analogy Box */}
+                <div className="cs-human-analogy-box">
+                  <div className="cs-human-analogy-title">
+                    <span className="text-amber">💡</span>
+                    <span>Think of it like this:</span>
                   </div>
-                ) : (
-                  <div className="cs-card-body-tech">
-                    <div className="cs-tech-badge-row">
-                      <span className="cs-tech-badge">{proj.badgeText}</span>
-                      <span className="cs-tech-badge">Zero Trackers</span>
-                    </div>
-                    <ul className="cs-tech-list">
-                      {proj.techSpecs.map((spec, i) => (
-                        <li key={i}>
-                          <CheckCircle2 className="w-3.5 h-3.5" style={{ color: proj.accent, flexShrink: 0 }} />
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <p className="cs-human-analogy-text">
+                    {proj.analogy}
+                  </p>
+                </div>
+
+                {/* Optional Developer Specs */}
+                {showTechDetails && (
+                  <div className="cs-human-tech-drawer">
+                    <span className="cs-drawer-label">Under the hood:</span>
+                    <p className="cs-drawer-text">{proj.techSummary}</p>
                   </div>
                 )}
 
-                {/* Card Footer: Launch Button */}
-                <div className="cs-card-footer">
+                {/* Big Launch Button */}
+                <div className="cs-human-footer">
                   <a
                     href={proj.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="cs-launch-btn"
-                    style={{ backgroundColor: proj.accent }}
+                    className="cs-human-launch-btn"
+                    style={{ backgroundColor: proj.color }}
                   >
-                    <span>{proj.cta}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>{proj.simpleAction}</span>
+                    <ExternalLink className="w-4 h-4" />
                   </a>
+                  <span className="cs-human-domain-hint">{proj.subdomain}</span>
                 </div>
               </div>
             );
           })}
-        </div>
+        </section>
 
-        {/* Developer Lab & Terminal Workbench */}
-        <div className="cs-workbench-container">
+        {/* Friendly About & Developer Console */}
+        <section className="cs-workbench-container">
           <div className="cs-card-bar">
             <div className="cs-window-dots">
               <span className="cs-dot cs-dot-red"></span>
@@ -455,16 +347,16 @@ export default function ComingSoon() {
 
             <div className="cs-card-tabs">
               <button
-                className={`cs-tab-btn ${activeTab === "products" ? "active" : ""}`}
-                onClick={() => setActiveTab("products")}
+                className={`cs-tab-btn ${activeTab === "tools" ? "active" : ""}`}
+                onClick={() => setActiveTab("tools")}
               >
-                <span>🌐</span> Subdomain Mesh
+                <span>🌐</span> All Projects & Sites
               </button>
               <button
-                className={`cs-tab-btn ${activeTab === "thoughts" ? "active" : ""}`}
-                onClick={() => setActiveTab("thoughts")}
+                className={`cs-tab-btn ${activeTab === "about" ? "active" : ""}`}
+                onClick={() => setActiveTab("about")}
               >
-                <span>💭</span> Dev Mindstream
+                <span>👋</span> Who Made This?
               </button>
               <button
                 className={`cs-tab-btn ${activeTab === "terminal" ? "active" : ""}`}
@@ -474,69 +366,86 @@ export default function ComingSoon() {
               </button>
             </div>
 
-            <span className="cs-card-status">mode: live-edge</span>
+            <span className="cs-card-status">● 100% online</span>
           </div>
 
-          {/* Workbench Tab 1: Subdomain Mesh */}
-          {activeTab === "products" && (
+          {/* Tab 1: All Projects */}
+          {activeTab === "tools" && (
             <div className="cs-tab-content">
-              <div className="cs-subdomain-grid">
-                {FLAGSHIP_PROJECTS.map((proj, i) => (
+              <div className="cs-simple-subdomain-list">
+                {HUMAN_PROJECTS.map((proj, i) => (
                   <a
                     key={i}
                     href={proj.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="cs-subdomain-card highlighted"
-                    style={{ "--sub-color": proj.accent }}
+                    className="cs-simple-sub-row"
                   >
-                    <div className="cs-sub-card-top">
-                      <span className="cs-subdomain-name">{proj.subdomain}</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-dim" />
+                    <div className="cs-sub-row-left">
+                      <span className="cs-sub-row-domain" style={{ color: proj.color }}>
+                        {proj.subdomain}
+                      </span>
+                      <span className="cs-sub-row-title">— {proj.name}</span>
                     </div>
-                    <span className="cs-subdomain-tag">[{proj.name}]</span>
-                    <span className="cs-subdomain-desc">{proj.simpleSummary}</span>
-                    <span className="cs-subdomain-status live">● Live Production</span>
+                    <span className="cs-sub-row-desc">{proj.plainEnglish}</span>
+                    <span className="cs-sub-row-arrow">Launch ↗</span>
                   </a>
                 ))}
 
-                {OTHER_SUBDOMAINS.map((sub, i) => (
+                {OTHER_TOOLS.map((sub, i) => (
                   <a
                     key={i + 10}
                     href={sub.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="cs-subdomain-card"
+                    className="cs-simple-sub-row"
                   >
-                    <div className="cs-sub-card-top">
-                      <span className="cs-subdomain-name">{sub.name}</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-dim" />
+                    <div className="cs-sub-row-left">
+                      <span className="cs-sub-row-domain">{sub.name}</span>
                     </div>
-                    <span className="cs-subdomain-desc">{sub.desc}</span>
-                    <span className={`cs-subdomain-status ${sub.state === "live" ? "live" : "incubating"}`}>
-                      ● {sub.status}
-                    </span>
+                    <span className="cs-sub-row-desc">{sub.desc}</span>
+                    <span className="cs-sub-row-arrow">Visit ↗</span>
                   </a>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Workbench Tab 2: Dev Mindstream */}
-          {activeTab === "thoughts" && (
-            <div className="cs-tab-content">
-              <div className="cs-thought-stream">
-                {DEV_THOUGHTS.map((item, idx) => (
-                  <div key={idx} className="cs-thought-item">
-                    <span className="cs-thought-time">[{item.time}]</span>
-                    <span className="cs-thought-text">{item.text}</span>
-                  </div>
-                ))}
+          {/* Tab 2: About Ramani */}
+          {activeTab === "about" && (
+            <div className="cs-tab-content cs-about-tab">
+              <div className="cs-about-content">
+                <h3>Hi, I'm Ramani Krishnan 👋</h3>
+                <p>
+                  I'm a final-year Artificial Intelligence & Data Science student living in Coimbatore, Tamil Nadu. I love engineering fast systems, algorithmic trading engines, and interactive web tools that solve real problems.
+                </p>
+                <p>
+                  I believe software should be fast, private, and easy for everyday people to understand without feeling intimidated by computer science jargon.
+                </p>
+
+                <div className="cs-about-links">
+                  <a
+                    href="https://github.com/Ramani-21-05"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-social-pill"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                    <span>GitHub Profile</span>
+                  </a>
+                  <a
+                    href="mailto:reach@rkws.in"
+                    className="cs-social-pill"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>reach@rkws.in</span>
+                  </a>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Workbench Tab 3: Interactive Terminal */}
+          {/* Tab 3: Interactive Terminal */}
           {activeTab === "terminal" && (
             <div className="cs-tab-content cs-terminal">
               <div className="cs-term-history">
@@ -560,7 +469,7 @@ export default function ComingSoon() {
                 <input
                   type="text"
                   className="cs-term-input"
-                  placeholder="type 'help', 'apps', or 'status'..."
+                  placeholder="type 'help', 'tools', or 'whoami'..."
                   value={cmdInput}
                   onChange={(e) => setCmdInput(e.target.value)}
                   onKeyDown={handleCommand}
@@ -569,12 +478,12 @@ export default function ComingSoon() {
               </div>
             </div>
           )}
-        </div>
+        </section>
 
         {/* Nudge & Action Row */}
-        <div className="cs-actions-row">
+        <section className="cs-actions-row">
           <button className="cs-nudge-btn" onClick={handleNudge}>
-            <span>⚡ Nudge the Dev</span>
+            <span>⚡ Say Hi to the Dev</span>
             <span className="cs-nudge-badge">{nudgeCount}</span>
           </button>
 
@@ -595,7 +504,7 @@ export default function ComingSoon() {
             <span>Email Direct (reach@rkws.in)</span>
             <span>↗</span>
           </a>
-        </div>
+        </section>
       </main>
 
       {/* Toast Notification */}
@@ -611,9 +520,9 @@ export default function ComingSoon() {
         <div className="cs-footer-meta">
           <span>© {new Date().getFullYear()} RKWS Studio</span>
           <span>•</span>
-          <span>Crafted with intention by Ramani Krishnan</span>
+          <span>Crafted by Ramani Krishnan</span>
           <span>•</span>
-          <span>Zero third-party trackers</span>
+          <span>No third-party trackers</span>
         </div>
 
         <div className="cs-footer-links">
