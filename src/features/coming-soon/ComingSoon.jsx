@@ -1,54 +1,111 @@
 import React, { useState, useEffect, useRef } from "react";
+import {
+  Shield,
+  Activity,
+  DollarSign,
+  ExternalLink,
+  Terminal,
+  Sparkles,
+  Layers,
+  Cpu,
+  Eye,
+  Zap,
+  ArrowRight,
+  CheckCircle2,
+  ChevronRight,
+  User,
+  Heart,
+  MessageSquare,
+  Flame,
+  HelpCircle,
+  Code2,
+  Globe,
+  Radio,
+  Lock,
+  Clock,
+  Compass
+} from "lucide-react";
 import "../../styles/coming-soon.css";
 
-const DEV_THOUGHTS = [
+const FLAGSHIP_PROJECTS = [
   {
-    time: "13:50 IST",
-    text: "Production release: Deployed 3 flagship client-side engines on Cloudflare Pages (mirror.rkws.in, sim.rkws.in, worth.rkws.in). Zero telemetry, 100% private.",
+    id: "browser-mirror",
+    name: "BrowserMirror",
+    subdomain: "mirror.rkws.in",
+    url: "https://mirror.rkws.in",
+    tag: "Online Privacy & Hardware Profiling",
+    accent: "#38bdf8", // Cyan
+    accentDim: "rgba(56, 189, 248, 0.15)",
+    hook: "Think 'Incognito Mode' hides who you are? Think again.",
+    simpleSummary:
+      "Every website you visit can identify your exact device in milliseconds without using cookies, logins, or your name. BrowserMirror reveals your invisible hardware fingerprint and provides actionable tools to defend your privacy.",
+    eli5:
+      "Just like a fingerprint on a glass, your computer has a unique 'handwriting' based on how its screen, graphics card, and audio chip render graphics. Websites track you across the internet using this signature even if you clear cookies or use Incognito mode.",
+    techSpecs: [
+      "63.68 bits Shannon Entropy Engine with 1 in 68.7 Billion global rarity",
+      "WebGL unmasked GPU renderer & floating-point shader precision probing",
+      "Canvas 2D sub-pixel anti-aliasing & winding rule geometry measurement",
+      "AudioContext offline oscillator buffer SHA-256 acoustic synthesis",
+      "100% Client-Side Privacy: zero telemetry sent to servers, 0 latency"
+    ],
+    badgeText: "1 in 68.7B Rarity Probed",
+    status: "Live on Cloudflare Edge",
+    cta: "Audit My Browser Privacy",
+    icon: Shield,
   },
   {
-    time: "11:20 IST",
-    text: "Architectural note: Keeping rkws.in pure and uncluttered. If a tool needs to go live today, it belongs on a sub-site.",
+    id: "system-sim",
+    name: "SystemSim",
+    subdomain: "sim.rkws.in",
+    url: "https://sim.rkws.in",
+    tag: "Distributed Systems & Physics Simulator",
+    accent: "#10b981", // Emerald
+    accentDim: "rgba(16, 185, 129, 0.15)",
+    hook: "Ever wondered why IRCTC Tatkal or Ticketmaster crash at 10:00 AM?",
+    simpleSummary:
+      "SimCity for the internet. An interactive 60 FPS physics sandbox where thousands of requests flow like water through servers, databases, and caches. Trigger chaotic traffic surges to watch servers overheat and collapse before your eyes.",
+    eli5:
+      "Think of servers like cashiers at a supermarket. When 100,000 shoppers rush 4 cashiers at once, lines back up out the door (yellow), cashiers overheat (🔥), and customers get turned away (red). SystemSim lets you stress-test and watch the meltdown in real time.",
+    techSpecs: [
+      "60 FPS HTML5 Canvas particle physics with cubic Bézier conduit curves",
+      "Little's Law queuing theory equilibrium (L = λW) across worker pools",
+      "M/M/c multi-server finite queue simulation & exponential service times",
+      "Interactive Disaster Scenarios: Ticketmaster Meltdown & Cache Stampede",
+      "Thermal load modeling with real-time 504 Gateway Timeout shedding"
+    ],
+    badgeText: "60 FPS Interactive Physics",
+    status: "Live on Cloudflare Edge",
+    cta: "Stress-Test Live Systems",
+    icon: Activity,
   },
   {
-    time: "09:40 IST",
-    text: "Contemplating UI layout: Why do so many landing pages look like cookie-cutter SaaS templates? We're taking our time to do this right.",
-  },
-  {
-    time: "08:15 IST",
-    text: "Fedora Linux workstation running at 48°C. Trading engines and data pipelines running stable on local nodes.",
-  },
-  {
-    time: "06:30 IST",
-    text: "Rule of simplicity: Zero unnecessary dependencies. The fastest code is the code you didn't have to load.",
+    id: "real-worth",
+    name: "RealWorth",
+    subdomain: "worth.rkws.in",
+    url: "https://worth.rkws.in",
+    tag: "Compensation & True Wealth Engine",
+    accent: "#f59e0b", // Amber
+    accentDim: "rgba(245, 158, 11, 0.15)",
+    hook: "Why an ₹18 LPA Bangalore offer gives you LESS pocket money than ₹10 LPA in your hometown.",
+    simpleSummary:
+      "Most salary calculators only show basic income tax. RealWorth calculates what you actually keep after Indian FY 2026-27 tax slabs, metro rents, 6-month security deposit locks, and 500 hours wasted in traffic.",
+    eli5:
+      "A big salary on paper can be an optical illusion. When ₹40,000/month goes to rent, ₹2 Lakhs is locked in landlord deposits, and you lose 2 hours daily sitting in traffic, your actual 'Hourly Freedom Wage' drops by more than 50%.",
+    techSpecs: [
+      "Statutory FY 2026-27 Section 115BAC Slabs & Section 87A rebate rules",
+      "Standard ₹75,000 deduction, 4% Health/Education cess, and surcharge",
+      "Metro Opportunity Cost & Commute Depreciation deflator matrix",
+      "Side-by-Side Offer Match Simulation with instant infographic export",
+      "100% Client-Side execution with zero tracking or financial data storage"
+    ],
+    badgeText: "FY 2026-27 Statutory Slabs",
+    status: "Live on Cloudflare Edge",
+    cta: "Calculate True Take-Home",
+    icon: DollarSign,
   },
 ];
 
-const SUBDOMAINS = [
-  {
-    name: "mirror.rkws.in",
-    desc: "BrowserMirror — Zero-Trust Browser Fingerprint Auditor & Actionable Defense Matrix.",
-    status: "Live Production",
-    state: "live",
-    url: "https://mirror.rkws.in",
-    tag: "Security / Privacy",
-  },
-  {
-    name: "sim.rkws.in",
-    desc: "SystemSim — Interactive 60 FPS Distributed Systems Physics & Disaster Simulator.",
-    status: "Live Production",
-    state: "live",
-    url: "https://sim.rkws.in",
-    tag: "Systems / Concurrency",
-  },
-  {
-    name: "worth.rkws.in",
-    desc: "RealWorth — True Purchasing Power & Indian FY 2026-27 Take-Home Salary Deflator.",
-    status: "Live Production",
-    state: "live",
-    url: "https://worth.rkws.in",
-    tag: "Tax / Finance",
-  },
+const OTHER_SUBDOMAINS = [
   {
     name: "demo.rkws.in",
     desc: "Interactive client prototypes, sandbox simulations, and live interface demos.",
@@ -79,24 +136,47 @@ const SUBDOMAINS = [
   },
 ];
 
+const DEV_THOUGHTS = [
+  {
+    time: "14:15 IST",
+    text: "Production verification: All 3 flagship subdomains (mirror, sim, worth) routing 200 OK via Cloudflare Edge with automated SSL.",
+  },
+  {
+    time: "13:50 IST",
+    text: "Human-centric design: Complex distributed systems and cryptography should be immediately understandable to anyone who sees them.",
+  },
+  {
+    time: "11:20 IST",
+    text: "Architectural note: Keeping rkws.in pure and uncluttered. If a tool needs to go live today, it belongs on an edge sub-site.",
+  },
+  {
+    time: "08:15 IST",
+    text: "Fedora Linux workstation running stable at 48°C. Algorithmic quant engines and live data pipelines operating on local nodes.",
+  },
+  {
+    time: "06:30 IST",
+    text: "Rule of simplicity: Zero unnecessary dependencies. The fastest code is the code you didn't have to load.",
+  },
+];
+
 const NUDGE_RESPONSES = [
   "Dev: 'Felt that! Switching back from Hacker News to Neovim.'",
   "Dev: 'Hold on, just fixing a race condition in the backtester.'",
   "Dev: 'Cup #3 of coffee brewed. Lines of code refactored: 142.'",
-  "Dev: 'Subdomains are already running! Main site is getting the artisan polish.'",
+  "Dev: 'All 3 subdomains are live! Mirror, Sim, and Worth are running.'",
   "Dev: 'No generic AI-sludge templates here. Handcrafted systems only.'",
-  "Dev: 'Currently debating whether this button should use flexbox or CSS grid.'",
   "Dev: 'Ping received loud and clear. Great things take time.'",
 ];
 
 export default function ComingSoon() {
-  const [activeTab, setActiveTab] = useState("thoughts");
+  const [viewMode, setViewMode] = useState("simple"); // "simple" | "tech"
+  const [activeTab, setActiveTab] = useState("products"); // "products" | "thoughts" | "terminal" | "subdomains"
   const [currentTime, setCurrentTime] = useState("");
   const [nudgeCount, setNudgeCount] = useState(() => {
     try {
-      return parseInt(localStorage.getItem("rkws_nudges") || "24", 10);
+      return parseInt(localStorage.getItem("rkws_nudges") || "32", 10);
     } catch {
-      return 24;
+      return 32;
     }
   });
   const [toastMessage, setToastMessage] = useState(null);
@@ -104,9 +184,9 @@ export default function ComingSoon() {
   // Terminal state
   const [cmdInput, setCmdInput] = useState("");
   const [termLines, setTermLines] = useState([
-    { type: "out", text: "rkws-shell v1.0.4 (x86_64-pc-linux-gnu)" },
-    { type: "out", text: "Apex domain 'rkws.in' is currently in incubation." },
-    { type: "out", text: "Type 'help' to inspect available commands." },
+    { type: "out", text: "rkws-shell v2.1.0 (x86_64-pc-linux-gnu)" },
+    { type: "out", text: "Cloudflare Edge Mesh: 3 Flagship Subdomains Active (mirror, sim, worth)." },
+    { type: "out", text: "Type 'help' to inspect available system commands." },
   ]);
   const termEndRef = useRef(null);
 
@@ -147,7 +227,6 @@ export default function ComingSoon() {
       NUDGE_RESPONSES[Math.floor(Math.random() * NUDGE_RESPONSES.length)];
     setToastMessage(randomMsg);
 
-    // Auto-dismiss toast
     setTimeout(() => {
       setToastMessage((prev) => (prev === randomMsg ? null : prev));
     }, 4000);
@@ -164,17 +243,17 @@ export default function ComingSoon() {
     if (lower === "help") {
       newHistory.push({
         type: "out",
-        text: "Available commands:\n  • status      - Query current incubator state\n  • subdomains  - List active sub-sites (*.rkws.in)\n  • whoami      - View developer identity & profile\n  • coffee      - Inject virtual caffeine into the dev\n  • nudge       - Poke the developer\n  • clear       - Clear terminal window\n  • github      - Open GitHub profile",
+        text: "Available commands:\n  • apps        - Launch the 3 flagship live engines\n  • status      - Query Cloudflare Edge & node status\n  • whoami      - View developer identity & credentials\n  • coffee      - Inject virtual caffeine into the dev\n  • nudge       - Poke the developer\n  • clear       - Clear terminal window\n  • github      - Open GitHub profile",
+      });
+    } else if (lower === "apps" || lower === "subdomains") {
+      newHistory.push({
+        type: "out",
+        text: "Active Production Engines:\n  → mirror.rkws.in  (Browser Fingerprint Auditor & Defense Shield)\n  → sim.rkws.in     (60 FPS Distributed Systems Physics Playground)\n  → worth.rkws.in   (Statutory FY 2026-27 Real Purchasing Power Deflator)",
       });
     } else if (lower === "status") {
       newHistory.push({
         type: "out",
-        text: "STATUS: 200 OK | State: Dev is Thinking | Scope: Main domain incubation | Subdomain mesh: Online",
-      });
-    } else if (lower === "subdomains") {
-      newHistory.push({
-        type: "out",
-        text: "Active Subdomains:\n  → mirror.rkws.in  (Browser Fingerprint Auditor & Defense Matrix)\n  → sim.rkws.in     (Distributed Systems Physics & Disaster Simulator)\n  → worth.rkws.in   (Statutory FY 2026-27 Purchasing Power Deflator)\n  → demo.rkws.in    (Interactive Prototypes)\n  → preview.rkws.in (Staging Previews)\n  → alpha.rkws.in   (Quant & Autonomous Telemetry)\n  → api.rkws.in     (Edge Workers)",
+        text: "STATUS: 200 OK | Edge Network: Cloudflare Pages | SSL: Automated Active | Mesh: 3 Engines Operational",
       });
     } else if (lower === "whoami") {
       newHistory.push({
@@ -219,55 +298,154 @@ export default function ComingSoon() {
       <header className="cs-header">
         <a href="/" className="cs-brand">
           <div className="cs-logo-symbol">rk</div>
-          <span className="cs-brand-text">rkws.in</span>
-          <span className="cs-tag">incubation</span>
+          <div>
+            <div className="cs-brand-text">rkws.in</div>
+            <div className="cs-brand-sub">studio & systems</div>
+          </div>
         </a>
 
         <div className="cs-header-center">
           <div className="cs-pulse-dot"></div>
-          <span>The dev is thinking...</span>
+          <span>3 Flagship Engines Live on Cloudflare</span>
         </div>
 
         <div className="cs-header-right">
           <div className="cs-clock">
-            Coimbatore, IN <span>{currentTime || "19:30:00"} IST</span>
+            Coimbatore, IN <span>{currentTime || "14:30:00"} IST</span>
           </div>
         </div>
       </header>
 
-      {/* Main Hero Section */}
+      {/* Main Container */}
       <main className="cs-main">
-        <div className="cs-hero-badge">
-          <span>APEX DOMAIN</span>
-          <span>•</span>
-          <strong>RESERVED FOR FUTURE LAUNCH</strong>
-        </div>
+        {/* Hero Section */}
+        <div className="cs-hero-section">
+          <div className="cs-hero-badge">
+            <Sparkles className="w-3.5 h-3.5" style={{ color: "var(--amber)" }} />
+            <span>DEEP SYSTEMS • ZERO JARGON • 100% PRIVATE</span>
+          </div>
 
-        <h1 className="cs-hero-title">
-          The dev is thinking. <br />
-          <span className="highlight">Great things take patience.</span>
-        </h1>
+          <h1 className="cs-hero-title">
+            Engineered for Depth. <br />
+            <span className="highlight">Understood by Everyone.</span>
+          </h1>
 
-        <p className="cs-hero-subtitle">
-          You’ve arrived at the main portal of <strong>rkws.in</strong>. We’re
-          intentionally holding back the primary website while the core
-          architecture is being thoughtfully designed. No rushed templates or
-          empty buzzwords.
-        </p>
+          <p className="cs-hero-subtitle">
+            Welcome to the laboratory of <strong>Ramani Krishnan</strong>. Here, advanced cryptography, distributed systems, and financial realities are distilled into interactive, production-grade tools that <strong>anyone</strong> can explore.
+          </p>
 
-        {/* Subdomain Notice */}
-        <div className="cs-subdomain-notice">
-          <span className="cs-notice-icon">⚡</span>
-          <div>
-            <strong>Looking for our active builds?</strong> Explore our live production engines:{" "}
-            <a href="https://mirror.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>mirror.rkws.in</a>,{" "}
-            <a href="https://sim.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>sim.rkws.in</a>, and{" "}
-            <a href="https://worth.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>worth.rkws.in</a>.
+          {/* Mode Switcher */}
+          <div className="cs-view-toggle-container">
+            <span className="cs-toggle-label">Audience View:</span>
+            <div className="cs-view-toggle">
+              <button
+                className={`cs-toggle-btn ${viewMode === "simple" ? "active" : ""}`}
+                onClick={() => setViewMode("simple")}
+              >
+                <Eye className="w-4 h-4" />
+                <span>Explain for Everyone (Visual)</span>
+              </button>
+              <button
+                className={`cs-toggle-btn ${viewMode === "tech" ? "active" : ""}`}
+                onClick={() => setViewMode("tech")}
+              >
+                <Code2 className="w-4 h-4" />
+                <span>Deep Engineering Specs</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Interactive Workspace Card */}
-        <div className="cs-card-container">
+        {/* Flagship Products Grid */}
+        <div className="cs-products-grid">
+          {FLAGSHIP_PROJECTS.map((proj) => {
+            const Icon = proj.icon;
+            return (
+              <div
+                key={proj.id}
+                className="cs-product-card"
+                style={{ "--card-accent": proj.accent }}
+              >
+                {/* Card Top: Tag & Live Indicator */}
+                <div className="cs-card-top">
+                  <div className="cs-card-tag" style={{ color: proj.accent }}>
+                    <Icon className="w-4 h-4" />
+                    <span>{proj.tag}</span>
+                  </div>
+                  <div className="cs-card-live-badge">
+                    <span className="cs-live-pulse" style={{ backgroundColor: proj.accent }}></span>
+                    <span>{proj.status}</span>
+                  </div>
+                </div>
+
+                {/* Card Title & Subdomain */}
+                <div className="cs-card-header">
+                  <h2 className="cs-card-title">{proj.name}</h2>
+                  <a
+                    href={proj.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-card-domain"
+                  >
+                    <span>{proj.subdomain}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* The Hook */}
+                <div className="cs-card-hook">
+                  "{proj.hook}"
+                </div>
+
+                {/* Dynamic Content: Simple vs Tech */}
+                {viewMode === "simple" ? (
+                  <div className="cs-card-body-simple">
+                    <p className="cs-simple-desc">{proj.simpleSummary}</p>
+                    <div className="cs-eli5-box">
+                      <div className="cs-eli5-header">
+                        <HelpCircle className="w-4 h-4" style={{ color: proj.accent }} />
+                        <strong>In Plain Words:</strong>
+                      </div>
+                      <p className="cs-eli5-text">{proj.eli5}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="cs-card-body-tech">
+                    <div className="cs-tech-badge-row">
+                      <span className="cs-tech-badge">{proj.badgeText}</span>
+                      <span className="cs-tech-badge">Zero Trackers</span>
+                    </div>
+                    <ul className="cs-tech-list">
+                      {proj.techSpecs.map((spec, i) => (
+                        <li key={i}>
+                          <CheckCircle2 className="w-3.5 h-3.5" style={{ color: proj.accent, flexShrink: 0 }} />
+                          <span>{spec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Card Footer: Launch Button */}
+                <div className="cs-card-footer">
+                  <a
+                    href={proj.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-launch-btn"
+                    style={{ backgroundColor: proj.accent }}
+                  >
+                    <span>{proj.cta}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Developer Lab & Terminal Workbench */}
+        <div className="cs-workbench-container">
           <div className="cs-card-bar">
             <div className="cs-window-dots">
               <span className="cs-dot cs-dot-red"></span>
@@ -277,35 +455,74 @@ export default function ComingSoon() {
 
             <div className="cs-card-tabs">
               <button
-                className={`cs-tab-btn ${
-                  activeTab === "thoughts" ? "active" : ""
-                }`}
+                className={`cs-tab-btn ${activeTab === "products" ? "active" : ""}`}
+                onClick={() => setActiveTab("products")}
+              >
+                <span>🌐</span> Subdomain Mesh
+              </button>
+              <button
+                className={`cs-tab-btn ${activeTab === "thoughts" ? "active" : ""}`}
                 onClick={() => setActiveTab("thoughts")}
               >
                 <span>💭</span> Dev Mindstream
               </button>
               <button
-                className={`cs-tab-btn ${
-                  activeTab === "terminal" ? "active" : ""
-                }`}
+                className={`cs-tab-btn ${activeTab === "terminal" ? "active" : ""}`}
                 onClick={() => setActiveTab("terminal")}
               >
                 <span>⌨️</span> Interactive Shell
               </button>
-              <button
-                className={`cs-tab-btn ${
-                  activeTab === "subdomains" ? "active" : ""
-                }`}
-                onClick={() => setActiveTab("subdomains")}
-              >
-                <span>🌐</span> Subdomain Mesh
-              </button>
             </div>
 
-            <span className="cs-card-status">mode: offline-craft</span>
+            <span className="cs-card-status">mode: live-edge</span>
           </div>
 
-          {/* Tab 1: Dev Mindstream */}
+          {/* Workbench Tab 1: Subdomain Mesh */}
+          {activeTab === "products" && (
+            <div className="cs-tab-content">
+              <div className="cs-subdomain-grid">
+                {FLAGSHIP_PROJECTS.map((proj, i) => (
+                  <a
+                    key={i}
+                    href={proj.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-subdomain-card highlighted"
+                    style={{ "--sub-color": proj.accent }}
+                  >
+                    <div className="cs-sub-card-top">
+                      <span className="cs-subdomain-name">{proj.subdomain}</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-dim" />
+                    </div>
+                    <span className="cs-subdomain-tag">[{proj.name}]</span>
+                    <span className="cs-subdomain-desc">{proj.simpleSummary}</span>
+                    <span className="cs-subdomain-status live">● Live Production</span>
+                  </a>
+                ))}
+
+                {OTHER_SUBDOMAINS.map((sub, i) => (
+                  <a
+                    key={i + 10}
+                    href={sub.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-subdomain-card"
+                  >
+                    <div className="cs-sub-card-top">
+                      <span className="cs-subdomain-name">{sub.name}</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-dim" />
+                    </div>
+                    <span className="cs-subdomain-desc">{sub.desc}</span>
+                    <span className={`cs-subdomain-status ${sub.state === "live" ? "live" : "incubating"}`}>
+                      ● {sub.status}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Workbench Tab 2: Dev Mindstream */}
           {activeTab === "thoughts" && (
             <div className="cs-tab-content">
               <div className="cs-thought-stream">
@@ -319,7 +536,7 @@ export default function ComingSoon() {
             </div>
           )}
 
-          {/* Tab 2: Terminal */}
+          {/* Workbench Tab 3: Interactive Terminal */}
           {activeTab === "terminal" && (
             <div className="cs-tab-content cs-terminal">
               <div className="cs-term-history">
@@ -343,48 +560,12 @@ export default function ComingSoon() {
                 <input
                   type="text"
                   className="cs-term-input"
-                  placeholder="type 'help', 'subdomains', or 'status'..."
+                  placeholder="type 'help', 'apps', or 'status'..."
                   value={cmdInput}
                   onChange={(e) => setCmdInput(e.target.value)}
                   onKeyDown={handleCommand}
                   autoFocus
                 />
-              </div>
-            </div>
-          )}
-
-          {/* Tab 3: Subdomains */}
-          {activeTab === "subdomains" && (
-            <div className="cs-tab-content">
-              <div className="cs-subdomain-grid">
-                {SUBDOMAINS.map((sub, i) => (
-                  <a
-                    key={i}
-                    href={sub.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="cs-subdomain-card"
-                    style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      <span className="cs-subdomain-name">{sub.name}</span>
-                      <span style={{ fontSize: "0.8rem", color: "var(--text-dim)" }}>↗</span>
-                    </div>
-                    {sub.tag && (
-                      <span style={{ fontSize: "0.7rem", fontFamily: "var(--font-mono)", color: "var(--amber)", letterSpacing: "0.02em" }}>
-                        [{sub.tag}]
-                      </span>
-                    )}
-                    <span className="cs-subdomain-desc">{sub.desc}</span>
-                    <span
-                      className={`cs-subdomain-status ${
-                        sub.state === "live" ? "live" : "incubating"
-                      }`}
-                    >
-                      ● {sub.status}
-                    </span>
-                  </a>
-                ))}
               </div>
             </div>
           )}
@@ -403,7 +584,7 @@ export default function ComingSoon() {
             rel="noreferrer"
             className="cs-secondary-btn"
           >
-            <span>GitHub Profile</span>
+            <span>GitHub (Ramani-21-05)</span>
             <span>↗</span>
           </a>
 
@@ -411,7 +592,7 @@ export default function ComingSoon() {
             href="mailto:reach@rkws.in"
             className="cs-secondary-btn"
           >
-            <span>Email Inquiries</span>
+            <span>Email Direct (reach@rkws.in)</span>
             <span>↗</span>
           </a>
         </div>
@@ -430,7 +611,7 @@ export default function ComingSoon() {
         <div className="cs-footer-meta">
           <span>© {new Date().getFullYear()} RKWS Studio</span>
           <span>•</span>
-          <span>Crafted with intention by Ramani</span>
+          <span>Crafted with intention by Ramani Krishnan</span>
           <span>•</span>
           <span>Zero third-party trackers</span>
         </div>
