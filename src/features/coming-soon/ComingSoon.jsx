@@ -3,47 +3,79 @@ import "../../styles/coming-soon.css";
 
 const DEV_THOUGHTS = [
   {
-    time: "19:15 IST",
+    time: "13:50 IST",
+    text: "Production release: Deployed 3 flagship client-side engines on Cloudflare Pages (mirror.rkws.in, sim.rkws.in, worth.rkws.in). Zero telemetry, 100% private.",
+  },
+  {
+    time: "11:20 IST",
     text: "Architectural note: Keeping rkws.in pure and uncluttered. If a tool needs to go live today, it belongs on a sub-site.",
   },
   {
-    time: "17:40 IST",
+    time: "09:40 IST",
     text: "Contemplating UI layout: Why do so many landing pages look like cookie-cutter SaaS templates? We're taking our time to do this right.",
   },
   {
-    time: "14:22 IST",
+    time: "08:15 IST",
     text: "Fedora Linux workstation running at 48°C. Trading engines and data pipelines running stable on local nodes.",
   },
   {
-    time: "11:05 IST",
+    time: "06:30 IST",
     text: "Rule of simplicity: Zero unnecessary dependencies. The fastest code is the code you didn't have to load.",
   },
 ];
 
 const SUBDOMAINS = [
   {
+    name: "mirror.rkws.in",
+    desc: "BrowserMirror — Zero-Trust Browser Fingerprint Auditor & Actionable Defense Matrix.",
+    status: "Live Production",
+    state: "live",
+    url: "https://mirror.rkws.in",
+    tag: "Security / Privacy",
+  },
+  {
+    name: "sim.rkws.in",
+    desc: "SystemSim — Interactive 60 FPS Distributed Systems Physics & Disaster Simulator.",
+    status: "Live Production",
+    state: "live",
+    url: "https://sim.rkws.in",
+    tag: "Systems / Concurrency",
+  },
+  {
+    name: "worth.rkws.in",
+    desc: "RealWorth — True Purchasing Power & Indian FY 2026-27 Take-Home Salary Deflator.",
+    status: "Live Production",
+    state: "live",
+    url: "https://worth.rkws.in",
+    tag: "Tax / Finance",
+  },
+  {
     name: "demo.rkws.in",
     desc: "Interactive client prototypes, sandbox simulations, and live interface demos.",
     status: "Active Deployment",
     state: "live",
+    url: "https://demo.rkws.in",
   },
   {
     name: "preview.rkws.in",
     desc: "Staging sandbox for upcoming customer deliverables and feature experiments.",
     status: "Staging Pipeline",
     state: "live",
+    url: "https://preview.rkws.in",
   },
   {
     name: "alpha.rkws.in",
     desc: "Autonomous agent execution nodes, quant backtest telemetry, and deep-tech logs.",
     status: "Private Node",
     state: "incubating",
+    url: "https://alpha.rkws.in",
   },
   {
     name: "api.rkws.in",
     desc: "Low-latency edge routing, webhook collectors, and background telemetry APIs.",
     status: "Edge Worker",
     state: "live",
+    url: "https://api.rkws.in",
   },
 ];
 
@@ -142,7 +174,7 @@ export default function ComingSoon() {
     } else if (lower === "subdomains") {
       newHistory.push({
         type: "out",
-        text: "Active Subdomains:\n  → demo.rkws.in    (Live Demos)\n  → preview.rkws.in (Staging Previews)\n  → alpha.rkws.in   (Quant & Autonomous Telemetry)\n  → api.rkws.in     (Edge Workers)",
+        text: "Active Subdomains:\n  → mirror.rkws.in  (Browser Fingerprint Auditor & Defense Matrix)\n  → sim.rkws.in     (Distributed Systems Physics & Disaster Simulator)\n  → worth.rkws.in   (Statutory FY 2026-27 Purchasing Power Deflator)\n  → demo.rkws.in    (Interactive Prototypes)\n  → preview.rkws.in (Staging Previews)\n  → alpha.rkws.in   (Quant & Autonomous Telemetry)\n  → api.rkws.in     (Edge Workers)",
       });
     } else if (lower === "whoami") {
       newHistory.push({
@@ -227,9 +259,10 @@ export default function ComingSoon() {
         <div className="cs-subdomain-notice">
           <span className="cs-notice-icon">⚡</span>
           <div>
-            <strong>Looking for our active builds?</strong> Live demos, client
-            work, and active tools deploy exclusively on sub-sites like{" "}
-            <code>demo.rkws.in</code> or <code>*.rkws.in</code>.
+            <strong>Looking for our active builds?</strong> Explore our live production engines:{" "}
+            <a href="https://mirror.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>mirror.rkws.in</a>,{" "}
+            <a href="https://sim.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>sim.rkws.in</a>, and{" "}
+            <a href="https://worth.rkws.in" target="_blank" rel="noreferrer" style={{ color: "var(--cyan)", textDecoration: "underline", fontWeight: 600 }}>worth.rkws.in</a>.
           </div>
         </div>
 
@@ -325,8 +358,23 @@ export default function ComingSoon() {
             <div className="cs-tab-content">
               <div className="cs-subdomain-grid">
                 {SUBDOMAINS.map((sub, i) => (
-                  <div key={i} className="cs-subdomain-card">
-                    <span className="cs-subdomain-name">{sub.name}</span>
+                  <a
+                    key={i}
+                    href={sub.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cs-subdomain-card"
+                    style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <span className="cs-subdomain-name">{sub.name}</span>
+                      <span style={{ fontSize: "0.8rem", color: "var(--text-dim)" }}>↗</span>
+                    </div>
+                    {sub.tag && (
+                      <span style={{ fontSize: "0.7rem", fontFamily: "var(--font-mono)", color: "var(--amber)", letterSpacing: "0.02em" }}>
+                        [{sub.tag}]
+                      </span>
+                    )}
                     <span className="cs-subdomain-desc">{sub.desc}</span>
                     <span
                       className={`cs-subdomain-status ${
@@ -335,7 +383,7 @@ export default function ComingSoon() {
                     >
                       ● {sub.status}
                     </span>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
